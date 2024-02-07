@@ -1,0 +1,20 @@
+{
+  "name": "studysync",
+  "version": "1.0.0",
+  "description": "StudySync is designed to address several key problems faced by students, including the lack of personalized academic schedules, difficulties in finding study groups and study spaces, mental health issues, inefficient course searching and feedback processes, and inconvenience in locating classrooms and available study spaces. This project aligns with broader business goals by enhancing the academic experience of students, improving retention rates, and promoting mental well-being. It builds upon prior related work in the field of student support platforms.\r ## Collaboraters \r -\tAdhil Ashraf\r -\tAnfaal Mahbub\r -\tAl Farhana Siddique\r -\tArvind Krishnaa\r -\tMehvish Shakeel\r -\tVarshiny Gogulanathan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.1",
+    "nodemon": "^3.0.3"
+  }
+}
