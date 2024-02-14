@@ -35,7 +35,8 @@ function LoginPage() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Login</h2>
+      <h1 className="app-name">Welcome to StudySync!</h1>
+        <h4></h4>
         <form onSubmit={handleSubmit}>
           <div>
             <label>

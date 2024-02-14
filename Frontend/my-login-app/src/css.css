@@ -2,14 +2,20 @@
 body, html {
     margin: 0;
     padding: 0;
+    background-image: url('https://img.freepik.com/free-photo/creative-composition-with-different-books_23-2148851035.jpg?w=1480&t=st=1707941596~exp=1707942196~hmac=a84adb2501be317aeac95c78eb71698abc1cbe3742d8cff0cde466cdcf62aa4f');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Set the height of the body to 100% of the viewport height */
+    overflow: hidden; /* Hide any overflow content */
     font-family: Arial, sans-serif;
     font-size: 16px; /* Base font size */
     line-height: 1.5; /* Improved readability */
+    
 }
   
 .App-header {
     background-color: #282c34;
-    color: white;
+    color: rgb(0, 103, 31);
     padding: 20px;
     text-align: center;
 }
@@ -98,6 +104,12 @@ body, html {
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4;
+    margin: 0 auto; /* Center the container horizontally */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    background-image: url('https://img.freepik.com/free-photo/creative-composition-with-different-books_23-2148851035.jpg?w=1480&t=st=1707941596~exp=1707942196~hmac=a84adb2501be317aeac95c78eb71698abc1cbe3742d8cff0cde466cdcf62aa4f'); /* Set background image */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the background image */
   }
   
   .App-header {
@@ -120,7 +132,7 @@ body, html {
     display: block;
     margin-bottom: 5px;
     font-size: 16px;
-    color: #333;
+    color: rgb(0, 103, 31);
   }
   
   input[type="email"], input[type="password"] {
@@ -133,7 +145,7 @@ body, html {
   }
   
   button {
-    background-color: #007bff;
+    background-color: #005303;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -146,11 +158,11 @@ body, html {
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: #002207;
   }
   
   a {
-    color: #007bff;
+    color: #000000;
     text-decoration: none;
   }
   
@@ -201,7 +213,7 @@ body, html {
 
 /* Aesthetic Enhancements */
 .button {
-    background-color: #007bff; /* Example button color */
+    background-color: #007415; /* Example button color */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -226,4 +238,12 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #45a049;
+}
+
+.app-name {
+  color: #004642; /* Set the color to match the theme */
+  font-size: 25px; /* Adjust the font size as needed */
+  font-family: quicksand;
+  font-weight:bolder; /* Optionally, make the font bold */
+  margin-bottom: 20px; /* Add some margin for spacing */
 }
