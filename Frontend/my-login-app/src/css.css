@@ -1,0 +1,229 @@
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px; /* Base font size */
+    line-height: 1.5; /* Improved readability */
+}
+  
+.App-header {
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+  
+/* Improved HomePage.css Styles */
+
+.home-page {
+    display: flex;
+    margin: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .sidebar {
+    flex: 1;
+    margin-right: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+
+  }
+  
+  .sidebar h2, .trending h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .sidebar ul, .trending ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar li, .trending li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .sidebar li:hover, .trending li:hover {
+    transform: translateY(-5px);
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .sidebar a:hover {
+    color: #0056b3;
+  }
+  
+  .trending {
+    flex: 3;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .trending ul {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .home-page {
+      flex-direction: column;
+    }
+  
+    .trending ul {
+      column-count: 1;
+    }
+  }
+  
+  
+/* LoginPage.css Styles */
+
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .App-header {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  form {
+    margin-top: 20px;
+  }
+  
+  form div {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  p {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  
+/* SignUpPage Styles */
+.SignUpPage-form {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.SignUpPage-input {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+  
+/* CoursePage Styles */
+.CoursePage-list {
+    list-style: none;
+    padding: 0;
+}
+  
+.CoursePage-item {
+    margin-bottom: 10px;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .LoginPage-form, .SignUpPage-form {
+        width: 90%; /* Adjust for smaller devices */
+    }
+}
+
+/* Aesthetic Enhancements */
+.button {
+    background-color: #007bff; /* Example button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.button:hover {
+    background-color: #0056b3;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
