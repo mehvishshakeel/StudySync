@@ -2,4 +2,4 @@
 Backend/.env
 
 # Making sure to not push a bunch of files at once
-Backend/node_modules
+Backend/node_modules/
