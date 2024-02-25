@@ -1,0 +1,5 @@
+# Hiding the confidential information
+Backend/.env
+
+# Making sure to not push a bunch of files at once
+Backend/node_modules/
