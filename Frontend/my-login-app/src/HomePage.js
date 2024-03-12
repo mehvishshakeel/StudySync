@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import './css.css';
 function HomePage() {
   // Example trending searches and courses data
-  const [trendingSearches, setTrendingSearches] = useState(['React Basics', 'Advanced CSS', 'Node.js for Beginners']);
+  const [trendingSearches, setTrendingSearches] = useState(['ENSF 400', 'SENG 401', 'ENSF 444','SENG 438']);
   const [courses, setCourses] = useState([
-    { id: 1, name: 'React Basics' },
-    { id: 2, name: 'Advanced CSS' },
-    { id: 3, name: 'Node.js for Beginners' },
+    { id: 1, name: 'ENSF 400' },
+    { id: 2, name: 'SENG 401' },
+    { id: 3, name: 'ENSF 444' },
+    { id: 4, name: 'SENG 438' },
   ]);
 
   return (
