@@ -5,11 +5,11 @@ body, html {
     background-image: url('image1.jpg');
     background-size: cover;
     background-position: center;
-    height: 100vh; /* Set the height of the body to 100% of the viewport height */
-    overflow: hidden; /* Hide any overflow content */
+    height: 100vh;
+    overflow: hidden;
     font-family: Arial, sans-serif;
-    font-size: 16px; /* Base font size */
-    line-height: 1.5; /* Improved readability */
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .App-header {
@@ -22,41 +22,83 @@ body, html {
 /* Improved HomePage.css Styles */
 .home-page {
     display: flex;
-    margin: 0; /* Remove the margin to ensure full-width */
+    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .sidebar {
-    flex: 1; /* Sidebar takes up all available space */
-    background-color: #dbdbdb;
-    padding: 15px;
+    flex: 1;
+    background-color: #f0f0f0;
+    padding: 20px;
     border-radius: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, transform 0.3s;
 }
 
 .sidebar:hover {
-    background-color: #93c097; /* Change background color on hover */
-    transform: translateX(5px); /* Move sidebar slightly to the right on hover */
+    background-color: #95cea2;
+    transform: translateX(10px);
 }
 
 .sidebar a {
     text-decoration: none;
-    color: #333; /* Default color */
-    transition: color 0.3s; /* Smooth transition effect for color change */
-    display: block; /* Ensure each link takes up the full width */
-    padding: 10px 15px; /* Add padding to each link */
+    color: #333;
+    display: block;
+    padding: 20px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .sidebar a:hover {
-    color: #008d07; /* Change text color on hover */
-    background-color: #ececec; /* Change background color on hover */
+    background-color: #dbdbdb;
+    color: #333;
 }
+
+.sidebar ul {
+    padding: 0;
+    list-style-type: none; 
+}
+
 .trending {
-    flex: 7; /* Trending section takes up 7 times the space of the sidebar */
+    flex: 3;
     background-color: #f9f9f9;
     padding: 20px;
-    border-radius: 0px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.trending h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 24px;
+}
+
+.trending ul {
+    padding: 0; /* Remove default padding */
+}
+
+.trending ul li {
+    list-style-type: none; /* Remove bullet points */
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.trending ul li:hover {
+    transform: translateY(-5px);
+}
+
+.trending a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.2s ease-in-out;
+}
+
+.trending a:hover {
+    color: #0056b3;
 }
 
 /* Position sidebar to the left */
@@ -66,12 +108,10 @@ body, html {
         left: 0;
         top: 0;
         bottom: 0;
-        width: 250px; /* Adjust the width as needed */
+        width: 250px;
     }
 
     .trending {
-        width: auto;
-        border-radius: 5px;
-        margin-left: 250px; /* Ensure the trending section doesn't overlap with the sidebar */
+        margin-left: 250px;
     }
 }
