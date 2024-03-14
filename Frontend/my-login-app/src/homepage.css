@@ -1,0 +1,77 @@
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    background-image: url('image1.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Set the height of the body to 100% of the viewport height */
+    overflow: hidden; /* Hide any overflow content */
+    font-family: Arial, sans-serif;
+    font-size: 16px; /* Base font size */
+    line-height: 1.5; /* Improved readability */
+}
+
+.App-header {
+    background-color: #ffffff;
+    color: rgb(0, 103, 31);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Improved HomePage.css Styles */
+.home-page {
+    display: flex;
+    margin: 0; /* Remove the margin to ensure full-width */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+    flex: 1; /* Sidebar takes up all available space */
+    background-color: #dbdbdb;
+    padding: 15px;
+    border-radius: 0px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar:hover {
+    background-color: #93c097; /* Change background color on hover */
+    transform: translateX(5px); /* Move sidebar slightly to the right on hover */
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333; /* Default color */
+    transition: color 0.3s; /* Smooth transition effect for color change */
+    display: block; /* Ensure each link takes up the full width */
+    padding: 10px 15px; /* Add padding to each link */
+}
+
+.sidebar a:hover {
+    color: #008d07; /* Change text color on hover */
+    background-color: #ececec; /* Change background color on hover */
+}
+.trending {
+    flex: 7; /* Trending section takes up 7 times the space of the sidebar */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Position sidebar to the left */
+@media (min-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 250px; /* Adjust the width as needed */
+    }
+
+    .trending {
+        width: auto;
+        border-radius: 5px;
+        margin-left: 250px; /* Ensure the trending section doesn't overlap with the sidebar */
+    }
+}

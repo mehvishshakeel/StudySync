@@ -1,7 +1,7 @@
 // HomePage.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './css.css';
+import './homepage.css';
 function HomePage() {
   // Example trending searches and courses data
   const [trendingSearches, setTrendingSearches] = useState(['ENSF 400', 'SENG 401', 'ENSF 444','SENG 438']);
