@@ -209,6 +209,30 @@ app.get("/posts/:courseId", async (req, res) => {
   });
 });
 
+app.post("/postId", async (req, res) => {
+  const { title, course, content } = req.body;
+
+  db2.getConnection(async (err, connection) => {
+    if (err) throw err;
+    
+    const sqlSearch = "SELECT postID FROM Content WHERE Title = ? AND Course = ? AND Content = ?";
+    const searchQuery = mysql.format(sqlSearch, [title, course, content]);
+
+    await connection.query(searchQuery, async (err, result) => {
+      if (err) throw err;
+      connection.release();
+
+      if (result.length === 0) {
+        res.status(404).json({ message: "Post not found" });
+      } else {
+        const postId = result[0].postID;
+        res.status(200).json({ postId });
+      }
+    });
+  });
+});
+
+
 
 const PORT = process.env.PORT || 3000;
 
