@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 const DB_HOST = process.env.DB_HOST;
 const DB_USER = process.env.DB_USER;
 const DB_PASSWORD = process.env.DB_PASSWORD;
-const DB_DATABASE = process.env.DB_DATABASE;
+const DB_DATABASE1 = process.env.DB_DATABASE;
+const DB_DATABASE2 = process.env.DB_DATABASE2;
+
 const DB_PORT = process.env.DB_PORT;
 
 const db = mysql.createPool({
@@ -18,10 +20,18 @@ const db = mysql.createPool({
   host: DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
-  database: DB_DATABASE,
+  database: DB_DATABASE1,
   port: DB_PORT
 });
 
+const db2 = mysql.createPool({
+  connectionLimit: 100,
+  host: DB_HOST,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_DATABASE2,
+  port: DB_PORT
+});
 
 app.post("/signup", async (req, res) => {
   const { fname, lname, email, program, password } = req.body;
@@ -70,13 +80,43 @@ app.post("/login", async (req, res) => {
         if (isPasswordValid) {
           // Password is correct
           connection.release();
-          res.status(200).json({ message: "Login successful" });
+          res.status(200).json({ message: "Login successful", userId: user.ID });
         } else {
           // Password is incorrect
           connection.release();
           res.status(401).json({ message: "Invalid email or password" });
         }
       }
+    });
+  });
+});
+
+
+app.post("/create-post", async (req, res) => {
+  const { userId, title, content, course } = req.body;
+  
+  // Validate input
+  if (!userId || !title || !content || !course) {
+    return res.status(400).json({ message: "Please provide userId, title, content, and course" });
+  }
+
+  // Get a connection from the pool
+  db2.getConnection(async (err, connection) => {
+    if (err) throw err;
+
+    // Insert post into database with course
+    const sqlInsert = "INSERT INTO content (UserID, Title, Content, Course) VALUES (?, ?, ?, ?)";
+    const insertQuery = mysql.format(sqlInsert, [userId, title, content, course]);
+
+    connection.query(insertQuery, (err, result) => {
+      connection.release();
+
+      if (err) {
+        console.error("Error creating post:", err);
+        return res.status(500).json({ message: "Failed to create post" });
+      }
+
+      res.status(201).json({ message: "Post created successfully" });
     });
   });
 });
