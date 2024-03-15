@@ -121,6 +121,95 @@ app.post("/create-post", async (req, res) => {
   });
 });
 
+
+app.delete("/delete-post/:postId", async (req, res) => {
+  const postId = req.params.postId;
+  
+  // Get a connection from the pool
+  db2.getConnection(async (err, connection) => {
+    if (err) throw err;
+
+    // Delete post from database
+    const sqlDelete = "DELETE FROM content WHERE PostID = ?";
+    const deleteQuery = mysql.format(sqlDelete, [postId]);
+
+    connection.query(deleteQuery, (err, result) => {
+      connection.release();
+
+      if (err) {
+        console.error("Error deleting post:", err);
+        return res.status(500).json({ message: "Failed to delete post" });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+
+      res.status(200).json({ message: "Post deleted successfully" });
+    });
+  });
+});
+
+app.put("/edit-post/:postId", async (req, res) => {
+  const postId = req.params.postId;
+  const { title, content } = req.body;
+
+  // Validate input
+  if (!title || !content) {
+    return res.status(400).json({ message: "Please provide title and content" });
+  }
+
+  // Get a connection from the pool
+  db2.getConnection(async (err, connection) => {
+    if (err) throw err;
+
+    // Update post in database
+    const sqlUpdate = "UPDATE content SET Title = ?, Content = ? WHERE PostID = ?";
+    const updateQuery = mysql.format(sqlUpdate, [title, content, postId]);
+
+    connection.query(updateQuery, (err, result) => {
+      connection.release();
+
+      if (err) {
+        console.error("Error updating post:", err);
+        return res.status(500).json({ message: "Failed to update post" });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+
+      res.status(200).json({ message: "Post updated successfully" });
+    });
+  });
+});
+
+app.get("/posts/:courseId", async (req, res) => {
+  const { courseId } = req.params;
+
+  db2.getConnection(async (err, connection) => {
+    if (err) throw err;
+    
+    const sqlSearch = "SELECT * FROM content WHERE Course = ?";
+    const searchQuery = mysql.format(sqlSearch, [courseId]);
+
+    await connection.query(searchQuery, async (err, result) => {
+      if (err) throw err;
+      connection.release();
+      
+      // Map the results to include only the required fields
+      const posts = result.map(post => ({
+        title: post.Title,
+        course: post.Course,
+        content: post.Content
+      }));
+      
+      res.status(200).json(posts);
+    });
+  });
+});
+
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
