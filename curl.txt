@@ -1,0 +1,19 @@
+Curl requests:
+
+delete:
+curl -X DELETE http://localhost:3000/delete-post/1
+
+Login:
+curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{"email": "johndoe@example.com", "password": "password"}'
+
+Signup:
+curl -X POST http://localhost:3000/signup -H "Content-Type: application/json" -d '{"fname": "J", "lname": "ar", "email": "arvi@example.com", "program": "Engineering", "password": "A12345"}'
+
+Create post:
+curl -X POST http://localhost:3000/create-post -H "Content-Type: application/json" -d '{"userId": "1", "title": "New Post", "content": "This is a new post", "course": "Computer Science"}'
+
+Edit post:
+curl -X PUT http://localhost:3000/edit-post/1 -H "Content-Type: application/json" -d '{"title": "Updated Title", "content": "Updated Content"}'
+
+Fetch post:
+curl http://localhost:3000/posts/computer%20science
