@@ -17,3 +17,7 @@ curl -X PUT http://localhost:3000/edit-post/1 -H "Content-Type: application/json
 
 Fetch post:
 curl http://localhost:3000/posts/computer%20science
+
+Fetch post id:
+curl -X POST http://localhost:3000/postId -H "Content-Type: application/json" -d '{"title": "New Post", "course": "Computer Science", "content": "This is a new post"}'
+
