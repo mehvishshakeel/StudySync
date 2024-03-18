@@ -1,19 +1,40 @@
-// HomePage.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './css.css';
+import { Carousel } from 'react-responsive-carousel'; // Import carousel component
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel styles
+import './homepage.css';
+
 function HomePage() {
   // Example trending searches and courses data
-  const [trendingSearches, setTrendingSearches] = useState(['React Basics', 'Advanced CSS', 'Node.js for Beginners']);
-  const [courses, setCourses] = useState([
-    { id: 1, name: 'React Basics' },
-    { id: 2, name: 'Advanced CSS' },
-    { id: 3, name: 'Node.js for Beginners' },
-  ]);
+  const trendingSearches = ['ENSF 400', 'SENG 401', 'ENSF 444', 'SENG 438'];
+  const courses = [
+    { id: 1, name: 'ENSF 400' },
+    { id: 2, name: 'SENG 401' },
+    { id: 3, name: 'ENSF 444' },
+    { id: 4, name: 'SENG 438' },
+  ];
+
+  // State variable to track sidebar visibility
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Function to toggle sidebar visibility
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
   return (
     <div className="home-page">
-      <aside className="sidebar">
+      <section className="carousel-section">
+        <Carousel showArrows={false} infiniteLoop={true} autoPlay={true} interval={3000} showThumbs={false} showIndicators={false} showStatus={false}>
+          {trendingSearches.map((search, index) => (
+            <div key={index}>
+              <h2>Trending Course: {search}</h2>
+              {/* Add any additional course details or actions */}
+            </div>
+          ))}
+        </Carousel>
+      </section>
+      <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <h2>Your Courses</h2>
         <ul>
           {courses.map((course) => (
@@ -23,14 +44,6 @@ function HomePage() {
           ))}
         </ul>
       </aside>
-      <main className="trending">
-        <h2>Trending</h2>
-        <ul>
-          {trendingSearches.map((search, index) => (
-            <li key={index}>{search}</li>
-          ))}
-        </ul>
-      </main>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    background-image: url('https://img.freepik.com/free-photo/creative-composition-with-different-books_23-2148851035.jpg?w=1480&t=st=1707941596~exp=1707942196~hmac=a84adb2501be317aeac95c78eb71698abc1cbe3742d8cff0cde466cdcf62aa4f');
+    background-image: url('image1.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh; /* Set the height of the body to 100% of the viewport height */
@@ -19,83 +19,7 @@ body, html {
     padding: 20px;
     text-align: center;
 }
-  
-/* Improved HomePage.css Styles */
 
-.home-page {
-    display: flex;
-    margin: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .sidebar {
-    flex: 1;
-    margin-right: 20px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-
-  }
-  
-  .sidebar h2, .trending h2 {
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 24px;
-  }
-  
-  .sidebar ul, .trending ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar li, .trending li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .sidebar li:hover, .trending li:hover {
-    transform: translateY(-5px);
-  }
-  
-  .sidebar a {
-    text-decoration: none;
-    color: #007bff;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  .sidebar a:hover {
-    color: #0056b3;
-  }
-  
-  .trending {
-    flex: 3;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .trending ul {
-    column-count: 2;
-    column-gap: 20px;
-  }
-  
-  @media (max-width: 768px) {
-    .home-page {
-      flex-direction: column;
-    }
-  
-    .trending ul {
-      column-count: 1;
-    }
-  }
-  
-  
 /* LoginPage.css Styles */
 
 .App {
@@ -107,7 +31,7 @@ body, html {
     margin: 0 auto; /* Center the container horizontally */
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
-    background-image: url('https://img.freepik.com/free-photo/creative-composition-with-different-books_23-2148851035.jpg?w=1480&t=st=1707941596~exp=1707942196~hmac=a84adb2501be317aeac95c78eb71698abc1cbe3742d8cff0cde466cdcf62aa4f'); /* Set background image */
+    background-image: url('image1.jpg'); /* Set background image */
     background-size: cover; /* Cover the entire container */
     background-position: center; /* Center the background image */
   }
@@ -246,4 +170,17 @@ input[type="submit"]:hover {
   font-family: quicksand;
   font-weight:bolder; /* Optionally, make the font bold */
   margin-bottom: 20px; /* Add some margin for spacing */
+}
+
+
+@keyframes buttonClickAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
