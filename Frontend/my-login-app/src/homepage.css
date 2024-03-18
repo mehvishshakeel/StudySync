@@ -12,18 +12,47 @@ body, html {
     line-height: 1.5;
 }
 
-.App-header {
-    background-color: #ffffff;
-    color: rgb(0, 103, 31);
-    padding: 20px;
-    text-align: center;
-}
-
 /* Improved HomePage.css Styles */
 .home-page {
     display: flex;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.carousel-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.carousel-section .carousel-root {
+    width: 100%;
+}
+
+.carousel-section .carousel .slide {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    background-color: #f9f9f900;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-section .carousel .slide > div {
+    max-width: 80%;
+    text-align: center;
+}
+
+.carousel-section .carousel .slide h2 {
+    color: #333;
+    font-size: 24px;
+}
+
+.carousel-section .carousel .slide p {
+    color: #666;
+    font-size: 16px;
 }
 
 .sidebar {
@@ -33,6 +62,8 @@ body, html {
     border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, transform 0.3s;
+    z-index: 1;
+    font-family: 'Open Sans', sans-serif; /* Font for sidebar */
 }
 
 .sidebar:hover {
@@ -65,20 +96,30 @@ body, html {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Roboto', sans-serif; /* New font for trending tab */
+}
+
+.trending:hover {
+    background-color: #ececec;
+    transform: translateY(-3px);
+    z-index: 2;
 }
 
 .trending h2 {
     margin-bottom: 15px;
     color: #333;
     font-size: 24px;
+    text-align: center;
 }
 
 .trending ul {
-    padding: 0; /* Remove default padding */
+    padding: 0;
 }
 
 .trending ul li {
-    list-style-type: none; /* Remove bullet points */
+    list-style-type: none;
     margin-bottom: 10px;
     padding: 10px;
     background-color: #fff;
@@ -95,6 +136,8 @@ body, html {
     text-decoration: none;
     color: #007bff;
     transition: color 0.2s ease-in-out;
+    display: block;
+    padding: 10px;
 }
 
 .trending a:hover {

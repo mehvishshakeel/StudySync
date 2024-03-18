@@ -7,6 +7,7 @@ function SignUpPage() {
   const [name, setName] = useState('');
   const [ucid, setUcid] = useState('');
   const [program, setProgram] = useState('');
+  const [Major, setMajor] = useState('');
   const [year, setYear] = useState('');
   const [semester, setSemester] = useState('');
   const [courses, setCourses] = useState('');
@@ -38,7 +39,7 @@ function SignUpPage() {
           </div>
           <div>
             <label>
-              UCID Number:
+              UCID:
               <input
                 type="text"
                 value={ucid}
@@ -78,41 +79,11 @@ function SignUpPage() {
           </div>
           <div>
             <label>
-              Program:
+              Major:
               <input
                 type="text"
-                value={program}
-                onChange={(e) => setProgram(e.target.value)}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Year:
-              <input
-                type="text"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Semester:
-              <input
-                type="text"
-                value={semester}
-                onChange={(e) => setSemester(e.target.value)}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Courses:
-              <input
-                type="text"
-                value={courses}
-                onChange={(e) => setCourses(e.target.value)}
+                value={Major}
+                onChange={(e) => setMajor(e.target.value)}
               />
             </label>
           </div>

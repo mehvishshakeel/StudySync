@@ -171,3 +171,16 @@ input[type="submit"]:hover {
   font-weight:bolder; /* Optionally, make the font bold */
   margin-bottom: 20px; /* Add some margin for spacing */
 }
+
+
+@keyframes buttonClickAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
