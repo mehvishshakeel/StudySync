@@ -158,3 +158,29 @@ body, html {
         margin-left: 250px;
     }
 }
+
+/* Add these styles to your CSS file */
+
+.sidebar ul {
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    list-style-type: none;
+    margin-bottom: 10px;
+  }
+  
+  .course-button {
+    background-color: black;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .course-button:hover {
+    background-color: black;
+  }
+  

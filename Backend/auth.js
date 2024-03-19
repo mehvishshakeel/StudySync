@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const { pool1 } = require('./database');
 const { pool2 } = require('./database');
 
-async function signUp(fname, lname, email, program, password) {
+async function signUp(fname, lname, email, program, password, year) {
     const saltRounds = 10;
     // const hashedPassword = await bcrypt.hash(password, saltRounds);
     
@@ -12,8 +12,8 @@ async function signUp(fname, lname, email, program, password) {
         if (err) reject(err);
         const sqlSearch = "SELECT * FROM User WHERE Email = ?";
         const searchQuery = mysql.format(sqlSearch, [email]);
-        const sqlInsert = "INSERT INTO User (Fname, Lname, Email, Program, Password) VALUES (?, ?, ?, ?, ?)";
-        const insertQuery = mysql.format(sqlInsert, [fname, lname, email, program, password]);
+        const sqlInsert = "INSERT INTO User (Fname, Lname, Email, Program, Password, Year) VALUES (?, ?, ?, ?, ?, ?)";
+        const insertQuery = mysql.format(sqlInsert, [fname, lname, email, program, password, year]);
         
         connection.query(searchQuery, async (err, result) => {
           if (err) {
