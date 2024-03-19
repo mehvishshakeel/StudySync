@@ -21,7 +21,7 @@ const postsDBConfig = {
   host: DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
-  database: 'Posts', // Change this to match your Posts database
+  database: 'posts', // Change this to match your Posts database
   port: DB_PORT
 };
 
@@ -30,7 +30,7 @@ const coursesDBConfig = {
   host: DB_HOST,
   user: DB_USER,
   password: DB_PASSWORD,
-  database: 'Courses', // Change this to match your Courses database
+  database: 'courses', // Change this to match your Courses database
   port: DB_PORT
 };
 

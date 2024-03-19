@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { signUp, login } = require('./auth');
 const { createPost, deletePost, editPost, getPosts, getPostId } = require('./post');
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors()); // Enable CORS for all routes
 
 // Signup Endpoint
 app.post("/signup", async (req, res) => {
@@ -87,7 +89,7 @@ app.post("/postId", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
