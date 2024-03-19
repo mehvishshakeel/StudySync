@@ -9,7 +9,7 @@ function LoginPage() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Reset previous errors
     setEmailError('');
@@ -28,14 +28,34 @@ function LoginPage() {
     }
 
     // If all validations pass, proceed with login
-    console.log('Login details:', { email, password });
-    navigate('/home');
+    try {
+      const response = await fetch('http://localhost:3003/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        // Login successful
+        console.log('Login successful');
+        navigate('/home');
+      } else {
+        // Login failed
+        console.error('Login failed:', data.message);
+        // You can display an error message to the user if needed
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      // Handle network errors or other exceptions
+    }
   };
 
   return (
     <div className="App">
       <header className="App-header">
-      <h1 className="app-name">Welcome to StudySync!</h1>
+        <h1 className="app-name">Welcome to StudySync!</h1>
         <h4></h4>
         <form onSubmit={handleSubmit}>
           <div>
