@@ -2,12 +2,14 @@ const { pool2 } = require('./database');
 const mysql = require('mysql');
 
 
-async function createPost(userId, title, content, course) {
+async function createPost(userId, title, content, courseId, program) {
+  console.log("User ID received:", userId); // Add this line for debugging
+
   return new Promise((resolve, reject) => {
     pool2.getConnection(async (err, connection) => {
       if (err) reject(err);
-      const sqlInsert = "INSERT INTO content (UserID, Title, Content, Course) VALUES (?, ?, ?, ?)";
-      const insertQuery = mysql.format(sqlInsert, [userId, title, content, course]);
+      const sqlInsert = "INSERT INTO content (UserID, Title, Content, CourseID, Program) VALUES (?, ?, ?, ?, ?)";
+      const insertQuery = mysql.format(sqlInsert, [userId, title, content, courseId, program]);
 
       connection.query(insertQuery, (err, result) => {
         connection.release();
@@ -23,12 +25,13 @@ async function createPost(userId, title, content, course) {
   });
 }
 
-async function deletePost(postId) {
+
+async function deletePost(userId, postId) {
   return new Promise((resolve, reject) => {
     pool2.getConnection(async (err, connection) => {
       if (err) reject(err);
-      const sqlDelete = "DELETE FROM content WHERE PostID = ?";
-      const deleteQuery = mysql.format(sqlDelete, [postId]);
+      const sqlDelete = "DELETE FROM content WHERE PostID = ? AND UserID = ?";
+      const deleteQuery = mysql.format(sqlDelete, [postId, userId]);
 
       connection.query(deleteQuery, (err, result) => {
         connection.release();
@@ -39,7 +42,7 @@ async function deletePost(postId) {
         }
 
         if (result.affectedRows === 0) {
-          resolve({ status: 404, message: "Post not found" });
+          resolve({ status: 404, message: "Post not found or unauthorized" });
         }
 
         resolve({ status: 200, message: "Post deleted successfully" });
@@ -48,12 +51,13 @@ async function deletePost(postId) {
   });
 }
 
-async function editPost(postId, title, content) {
+
+async function editPost(userId, postId, title, content) {
   return new Promise((resolve, reject) => {
     pool2.getConnection(async (err, connection) => {
       if (err) reject(err);
-      const sqlUpdate = "UPDATE content SET Title = ?, Content = ? WHERE PostID = ?";
-      const updateQuery = mysql.format(sqlUpdate, [title, content, postId]);
+      const sqlUpdate = "UPDATE content SET Title = ?, Content = ? WHERE PostID = ? AND UserID = ?";
+      const updateQuery = mysql.format(sqlUpdate, [title, content, postId, userId]);
 
       connection.query(updateQuery, (err, result) => {
         connection.release();
@@ -64,7 +68,7 @@ async function editPost(postId, title, content) {
         }
 
         if (result.affectedRows === 0) {
-          resolve({ status: 404, message: "Post not found" });
+          resolve({ status: 404, message: "Post not found or unauthorized" });
         }
 
         resolve({ status: 200, message: "Post updated successfully" });
@@ -73,11 +77,12 @@ async function editPost(postId, title, content) {
   });
 }
 
+
 async function getPosts(courseId) {
   return new Promise((resolve, reject) => {
     pool2.getConnection(async (err, connection) => {
       if (err) reject(err);
-      const sqlSearch = "SELECT * FROM content WHERE Course = ?";
+      const sqlSearch = "SELECT * FROM content WHERE CourseID = ?";
       const searchQuery = mysql.format(sqlSearch, [courseId]);
 
       connection.query(searchQuery, async (err, result) => {
