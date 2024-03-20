@@ -8,7 +8,21 @@ function SignUpPage() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [program, setProgram] = useState('');
-
+  const [year, setYear] = useState('');
+  
+  const programs = [
+    'Engineering',
+    'Mechanical Engineering',
+    'Electrical Engineering',
+    'Civil Engineering',
+    'Software Engineering',
+    'Chemical Engineering',
+    'Energy Engineering',
+    'Biomedical Engineering',
+    'Geomatics Engineering',
+    'Sustainable Systems Engineering',
+    'Engineering Physics'
+  ];
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,12 +31,14 @@ function SignUpPage() {
       return;
     }
     
+
     const userData = {
       fname,
       lname,
       email,
       program,
-      password
+      password,
+      year
     };
 
     try {
@@ -104,10 +120,22 @@ function SignUpPage() {
           <div>
             <label>
               Program:
+              <select value={program} onChange={(e) => setProgram(e.target.value)}>
+                <option value="">Select Program</option>
+                {programs.map((prog) => (
+                  <option key={prog} value={prog}>{prog}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <div>
+            <label>
+              Year:
               <input
-                type="text"
-                value={program}
-                onChange={(e) => setProgram(e.target.value)}
+                type="number"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
               />
             </label>
           </div>

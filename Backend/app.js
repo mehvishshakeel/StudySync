@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { signUp, login } = require('./auth');
+const { getUserDetailsByEmail, getUserCourses } = require('./courses');
 const { createPost, deletePost, editPost, getPosts, getPostId } = require('./post');
 const cors = require('cors');
 
@@ -9,10 +10,11 @@ app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all routes
 
 // Signup Endpoint
-app.post("/signup", async (req, res) => {
-  const { fname, lname, email, program, password } = req.body;
+app.post('/signup', async (req, res) => {
+  const { fname, lname, email, program, password, year } = req.body; // Extract user data from request body
   try {
-    const result = await signUp(fname, lname, email, program, password);
+    // Call the signUp function with user data
+    const result = await signUp(fname, lname, email, program, password, year);
     res.status(result.status).json({ message: result.message });
   } catch (error) {
     console.error("Error signing up:", error);
@@ -88,6 +90,33 @@ app.post("/postId", async (req, res) => {
     res.status(500).json({ message: "Failed to get postId" });
   }
 });
+
+
+// Endpoint for user details
+app.post('/user-details', async (req, res) => {
+  const { email } = req.body;
+  try {
+    const userDetails = await getUserDetailsByEmail(email);
+    res.json(userDetails);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Endpoint for user courses
+app.post('/user-courses', async (req, res) => {
+  const { email } = req.body;
+  try {
+    const userDetails = await getUserDetailsByEmail(email);
+    const { program, year } = userDetails;
+    const courses = await getUserCourses(email, program, year);
+    res.json(courses);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 
 const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
