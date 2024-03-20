@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Lname` VARCHAR(45) NULL,
   `Email` VARCHAR(45) NULL,
   `Program` VARCHAR(45) NULL,
-  `Password` VARCHAR(45) NULL,
+  `Password` VARCHAR(1000) NULL,
+  `Year` INT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE
 );
