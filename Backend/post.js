@@ -2,12 +2,14 @@ const { pool2 } = require('./database');
 const mysql = require('mysql');
 
 
-async function createPost(userId, title, content, course) {
+async function createPost(userId, title, content, courseId, program) {
+  console.log("User ID received:", userId); // Add this line for debugging
+
   return new Promise((resolve, reject) => {
     pool2.getConnection(async (err, connection) => {
       if (err) reject(err);
-      const sqlInsert = "INSERT INTO content (UserID, Title, Content, Course) VALUES (?, ?, ?, ?)";
-      const insertQuery = mysql.format(sqlInsert, [userId, title, content, course]);
+      const sqlInsert = "INSERT INTO content (UserID, Title, Content, CourseID, Program) VALUES (?, ?, ?, ?, ?)";
+      const insertQuery = mysql.format(sqlInsert, [userId, title, content, courseId, program]);
 
       connection.query(insertQuery, (err, result) => {
         connection.release();
@@ -22,6 +24,7 @@ async function createPost(userId, title, content, course) {
     });
   });
 }
+
 
 async function deletePost(postId) {
   return new Promise((resolve, reject) => {
@@ -77,7 +80,7 @@ async function getPosts(courseId) {
   return new Promise((resolve, reject) => {
     pool2.getConnection(async (err, connection) => {
       if (err) reject(err);
-      const sqlSearch = "SELECT * FROM content WHERE Course = ?";
+      const sqlSearch = "SELECT * FROM content WHERE CourseID = ?";
       const searchQuery = mysql.format(sqlSearch, [courseId]);
 
       connection.query(searchQuery, async (err, result) => {

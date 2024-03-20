@@ -1,58 +1,78 @@
 // HomePage.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './homepage.css'; // Import your CSS file
-import CoursePosts from './CoursePosts'; // Import the CoursePosts component
+import './homepage.css'; 
+import CoursePosts from './CoursePosts'; 
+import CreatePostForm from './CreatePostForm'; 
 
 function HomePage() {
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(null);
-  const [loggedInUser, setLoggedInUser] = useState(null); // Define loggedInUser state
+  const [loggedInUser, setLoggedInUser] = useState(null); 
+  const [coursePosts, setCoursePosts] = useState([]);
+  const [userId, setUserId] = useState(null); // State to store user ID
+  const [program, setProgram] = useState(null); // State to store program
 
   useEffect(() => {
-    const fetchUserCourses = async () => {
+    const fetchUserDetails = async () => {
       try {
         const userEmail = localStorage.getItem('userEmail');
-        const userDetailsResponse = await fetch('http://localhost:3003/user-details', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: userEmail }),
-        });
-        if (userDetailsResponse.ok) {
-          const { program, year } = await userDetailsResponse.json();
-          const userCoursesResponse = await fetch('http://localhost:3003/user-courses', {
+        if (userEmail) {
+          setLoggedInUser(userEmail);
+          const userDetailsResponse = await fetch('http://localhost:3003/user-details', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email: userEmail, program }), // Pass program here
+            body: JSON.stringify({ email: userEmail }),
           });
-          if (userCoursesResponse.ok) {
-            const userCourses = await userCoursesResponse.json();
-            setCourses(userCourses);
+          if (userDetailsResponse.ok) {
+            const userDetails = await userDetailsResponse.json();
+            setUserId(userDetails.userId); // Set the user ID
+            setProgram(userDetails.program); // Set the program
+            // Now fetch the user courses
+            const userCoursesResponse = await fetch('http://localhost:3003/user-courses', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email: userEmail, program: userDetails.program }),
+            });
+            if (userCoursesResponse.ok) {
+              const userCourses = await userCoursesResponse.json();
+              setCourses(userCourses);
+            } else {
+              console.error('Failed to fetch user courses');
+            }
           } else {
-            console.error('Failed to fetch user courses');
+            console.error('Failed to fetch user details');
           }
-        } else {
-          console.error('Failed to fetch user details');
         }
       } catch (error) {
-        console.error('Error fetching user courses:', error);
+        console.error('Error fetching user details:', error);
       }
     };
-    fetchUserCourses();
+    fetchUserDetails();
   }, []);
 
-  const handleCourseClick = (courseId) => {
+  const handleCourseClick = async (courseId) => {
     setSelectedCourse(courseId);
+    try {
+      const response = await fetch(`http://localhost:3003/posts/${courseId}`);
+      if (response.ok) {
+        const posts = await response.json();
+        setCoursePosts(posts);
+      } else {
+        console.error('Failed to fetch posts for the selected course');
+      }
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
   };
 
   return (
     <div className="home-page">
       <aside className="sidebar">
-        {/* Home Button */}
         <Link to="/home">
           <button className="home-button">Home</button>
         </Link>
@@ -66,15 +86,16 @@ function HomePage() {
             </li>
           ))}
         </ul>
-        {/* Plus Button to Add New Posts */}
-        {loggedInUser && (
-          <Link to="/add-post">
+      </aside>
+      {loggedInUser && (
+          <Link to="/CreatePostForm">
             <button className="add-post-button">+</button>
           </Link>
-        )}
-      </aside>
+        )
+      }
       <section className="course-content">
-        {selectedCourse && <CoursePosts courseId={selectedCourse} />}
+        {selectedCourse && <CoursePosts courseId={selectedCourse} posts={coursePosts} />}
+        {selectedCourse && <CreatePostForm courseId={selectedCourse} userId={userId} program={program} />}
       </section>
     </div>
   );

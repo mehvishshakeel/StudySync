@@ -32,7 +32,7 @@ async function getUserDetailsByEmail(email) {
         if (err) reject(err);
   
         // Construct SQL query to fetch user details based on email
-        const sqlQuery = 'SELECT YEAR, Program FROM user WHERE Email = ?';
+        const sqlQuery = 'SELECT YEAR, Program, ID FROM user WHERE Email = ?';
         const formattedQuery = mysql.format(sqlQuery, [email]);
   
         // Execute SQL query
@@ -48,7 +48,8 @@ async function getUserDetailsByEmail(email) {
             } else {
               const userDetails = {
                 year: results[0].YEAR,
-                program: results[0].Program
+                program: results[0].Program,
+                userId:results[0].ID
               };
               resolve(userDetails);
             }
