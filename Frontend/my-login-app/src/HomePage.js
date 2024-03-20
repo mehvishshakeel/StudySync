@@ -1,9 +1,13 @@
+// HomePage.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './homepage.css'; // Import your CSS file
+import CoursePosts from './CoursePosts'; // Import the CoursePosts component
 
 function HomePage() {
   const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(null); // Define loggedInUser state
 
   useEffect(() => {
     const fetchUserCourses = async () => {
@@ -41,6 +45,10 @@ function HomePage() {
     fetchUserCourses();
   }, []);
 
+  const handleCourseClick = (courseId) => {
+    setSelectedCourse(courseId);
+  };
+
   return (
     <div className="home-page">
       <aside className="sidebar">
@@ -48,18 +56,26 @@ function HomePage() {
         <Link to="/home">
           <button className="home-button">Home</button>
         </Link>
-        {/* Your Courses */}
         <h2>Your Courses</h2>
         <ul>
           {courses.map((course) => (
             <li key={course.id}>
-              <Link to={`/course/${course.id}`}>
-                <button className="course-button">{course.course_name}</button>
-              </Link>
+              <button className="course-button" onClick={() => handleCourseClick(course.id)}>
+                {course.course_name}
+              </button>
             </li>
           ))}
         </ul>
+        {/* Plus Button to Add New Posts */}
+        {loggedInUser && (
+          <Link to="/add-post">
+            <button className="add-post-button">+</button>
+          </Link>
+        )}
       </aside>
+      <section className="course-content">
+        {selectedCourse && <CoursePosts courseId={selectedCourse} />}
+      </section>
     </div>
   );
 }
