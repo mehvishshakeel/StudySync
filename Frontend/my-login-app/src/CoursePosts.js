@@ -1,15 +1,21 @@
+// CoursePosts.js
 import React from 'react';
-import './CoursePosts.css'; // Import CSS file for styling
 
-function CoursePosts({ courseName, posts }) {
+function CoursePosts({ courseId, posts, userId, onDelete, onEdit }) {
   return (
     <div className="course-posts">
-      <h3 className="course-header">Posts for Course: {courseName}</h3>
+      <h3>Posts for Course {courseId}</h3>
       <div className="post-container">
         {posts.map((post, index) => (
-          <div className="post-tile" key={index}>
-            <h4 className="post-title">{post.title}</h4>
-            <p className="post-content">{post.content}</p>
+          <div key={index} className="post-tile">
+            <h4>{post.title}</h4>
+            <p>{post.content}</p>
+            {userId === post.userId && (
+              <div className="post-actions">
+                <button onClick={() => onDelete(post.postId)}>Delete</button>
+                <button onClick={() => onEdit(post.postId)}>Edit</button>
+              </div>
+            )}
           </div>
         ))}
       </div>
