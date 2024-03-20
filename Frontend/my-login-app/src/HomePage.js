@@ -44,6 +44,11 @@ function HomePage() {
   return (
     <div className="home-page">
       <aside className="sidebar">
+        {/* Home Button */}
+        <Link to="/home">
+          <button className="home-button">Home</button>
+        </Link>
+        {/* Your Courses */}
         <h2>Your Courses</h2>
         <ul>
           {courses.map((course) => (

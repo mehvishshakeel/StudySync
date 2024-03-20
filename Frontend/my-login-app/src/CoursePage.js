@@ -39,7 +39,10 @@ function CoursePage() {
           <p>Loading...</p>
         )}
       </div>
-      <Link to="/">Back to Home</Link>
+      {/* Home Button */}
+      <Link to="/home" className="home-link">
+        <button className="home-button">Home</button>
+      </Link>
     </div>
   );
 }
