@@ -1,0 +1,60 @@
+/* CoursePosts.css */
+
+.course-posts {
+    margin-top: 20px; /* Add some spacing at the top */
+  }
+  
+  .course-header {
+    font-size: 24px; /* Larger font size for the course header */
+    margin-bottom: 20px; /* Add spacing below the header */
+  }
+  
+  .post-container {
+    display: grid; /* Use CSS grid for the tile layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid layout with minimum width of 300px */
+    grid-gap: 20px; /* Spacing between post tiles */
+  }
+  
+  .post-tile {
+    background-color: #f4f4f4; /* Background color of the tile */
+    border: 1px solid #ddd; /* Border around the tile */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Padding inside the tile */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for elevation */
+  }
+  
+  .post-title {
+    font-size: 18px; /* Font size of the title */
+    font-weight: bold; /* Bold font weight */
+    margin-bottom: 10px; /* Spacing below the title */
+  }
+  
+  .post-content {
+    font-size: 16px; /* Font size of the content */
+    line-height: 1.6; /* Line height for readability */
+  }
+  
+  /* CoursePosts.css */
+
+.course-posts {
+  padding: 20px;
+}
+
+.post-tile {
+  background-color: #f5f5f5; /* Light gray, you can change this */
+  color: #333; /* Dark text color, you can change this */
+  border-bottom: 1px solid #e1e1e1; /* Border color */
+  padding: 15px;
+  margin-bottom: 10px; /* Space between posts */
+}
+
+.post-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.post-actions button {
+  margin-left: 10px;
+  color:#333;
+}
