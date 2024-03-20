@@ -184,3 +184,45 @@ body, html {
     background-color: black;
   }
   
+  .add-post-button{
+    background-color: #333;
+    border: #0056b3;
+  }
+
+  /* homepage.css */
+
+  
+
+  .course-content {
+    flex-grow: 1;
+    overflow-y: auto; /* for scrolling through posts */
+  }
+  
+  .add-post-button {
+    position: fixed; /* Fixed position */
+    right: 20px; /* Right side of the screen */
+    top: 20px; /* Top of the screen */
+    background-color: #4CAF50; /* Example color */
+    border: none;
+    border-radius: 50%; /* Circle shape */
+    width: 50px; /* Size of the button */
+    height: 50px; /* Size of the button */
+    text-align: center;
+    line-height: 50px; /* Center the plus sign vertically */
+    font-size: 30px; /* Size of the plus sign */
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* CoursePosts.css */
+  .course-posts {
+    padding: 20px;
+  }
+  
+  .post-tile {
+    background-color: #f5f5f5; /* Light gray, you can change this */
+    color: #333; /* Dark text color, you can change this */
+    border-bottom: 1px solid #e1e1e1; /* Border color */
+    padding: 15px;
+    margin-bottom: 10px; /* Space between posts */
+  }
