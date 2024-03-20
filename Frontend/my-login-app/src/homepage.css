@@ -1,59 +1,23 @@
-/* Global Styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    background-image: url('image1.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-}
 
-/* Improved HomePage.css Styles */
+
 .home-page {
-    display: flex;
-    margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.carousel-section {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
 
-.carousel-section .carousel-root {
-    width: 100%;
-}
+
+
+
 
 .carousel-section .carousel .slide {
-    display: flex;
-    justify-content: right;
-    align-items: right;
-    background-color: #f9f9f900;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-section .carousel .slide > div {
     max-width: 80%;
-    text-align: center;
+    padding-left: 20%;
+
 }
 
-.carousel-section .carousel .slide h2 {
-    color: #333;
-    font-size: 24px;
-}
 
-.carousel-section .carousel .slide p {
-    color: #666;
-    font-size: 16px;
-}
+
+
 
 .sidebar {
     flex: 1;
@@ -64,6 +28,7 @@ body, html {
     transition: background-color 0.3s, transform 0.3s;
     z-index: 1;
     font-family: 'Open Sans', sans-serif; /* Font for sidebar */
+    
 }
 
 .sidebar:hover {
@@ -90,55 +55,95 @@ body, html {
     list-style-type: none; 
 }
 
-.trending {
-    flex: 3;
-    background-color: #f9f9f9;
+
+
+
+
+.cards-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center cards horizontally */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-right: 20px;
-    transition: background-color 0.3s, transform 0.3s;
-    font-family: 'Roboto', sans-serif; /* New font for trending tab */
-}
-
-.trending:hover {
-    background-color: #ececec;
-    transform: translateY(-3px);
-    z-index: 2;
-}
-
-.trending h2 {
-    margin-bottom: 15px;
-    color: #333;
+    padding-left: 22.5%;
+    max-height: 660px; /* Adjust this value based on your preference */
+    overflow-y: auto; /* Enables vertical scrolling */
+  }
+  
+  .card {
+    width: 60%; /* Increase width, or you can specify a fixed width like 400px */
+    padding: 40px; /* Increase padding for more space inside the card */
+    margin-bottom: 30px; /* Adjust spacing between cards if needed */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px; /* Optional: for rounded corners */
+    background-color: white;
+  }
+  
+  .card {
+    position: relative;
+    /* Other styles remain the same */
+  }
+  
+.dot {
+    width: 1px; /* Size of the dot */
+    height: 1px; /* Size of the dot */
+    border-radius: 20%;
+    cursor: pointer;
+  }
+  .card-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .edit-action, .delete-action {
+    cursor: pointer;
+    display: block; /* Make each dot appear on its own line */
+    padding: 4px;
     font-size: 24px;
-    text-align: center;
-}
+    line-height: 0.25; /* Adjust the line height to control vertical spacing */
+  }
+  
 
-.trending ul {
-    padding: 0;
-}
 
-.trending ul li {
-    list-style-type: none;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-}
-
-.trending ul li:hover {
-    transform: translateY(-5px);
-}
-
-.trending a {
-    text-decoration: none;
-    color: #007bff;
-    transition: color 0.2s ease-in-out;
+  .card-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .edit-action, .delete-action {
+    cursor: pointer;
     display: block;
-    padding: 10px;
-}
+    padding: 8px;
+    font-size: 24px;
+    line-height: 0;
+    position: relative;
+  }
+  
+  .tooltip {
+    visibility: hidden;
+    width: 60px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  .edit-action:hover .tooltip, .delete-action:hover .tooltip {
+    visibility: visible;
+  }
+  
+
 
 .trending a:hover {
     color: #0056b3;
@@ -158,29 +163,3 @@ body, html {
         margin-left: 250px;
     }
 }
-
-/* Add these styles to your CSS file */
-
-.sidebar ul {
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    list-style-type: none;
-    margin-bottom: 10px;
-  }
-  
-  .course-button {
-    background-color: black;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .course-button:hover {
-    background-color: black;
-  }
-  
