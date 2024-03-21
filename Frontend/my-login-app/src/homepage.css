@@ -1,58 +1,21 @@
-/* Global Styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    background-image: url('image1.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-/* Improved HomePage.css Styles */
+/* homepage.css */
 .home-page {
-    display: flex;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 250px; /* sidebar width */
+    padding-top: 20px; /* to ensure there's space at the top */
+    min-height: 100vh; /* full height */
 }
 
-.carousel-section {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.carousel-section .carousel-root {
-    width: 100%;
-}
-
+/* Adjust the max-width of the carousel slide to match the card width */
 .carousel-section .carousel .slide {
-    display: flex;
-    justify-content: right;
-    align-items: right;
-    background-color: #f9f9f900;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 60%; /* same as card width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.carousel-section .carousel .slide > div {
-    max-width: 80%;
-    text-align: center;
-}
-
-.carousel-section .carousel .slide h2 {
-    color: #333;
-    font-size: 24px;
-}
-
-.carousel-section .carousel .slide p {
-    color: #666;
-    font-size: 16px;
+@media (max-width: 767px) {
+    .home-page {
+        padding-left: 0; /* On smaller screens, the sidebar isn't fixed */
+    }
 }
 
 .sidebar {
@@ -90,139 +53,56 @@ body, html {
     list-style-type: none; 
 }
 
-.trending {
-    flex: 3;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-right: 20px;
-    transition: background-color 0.3s, transform 0.3s;
-    font-family: 'Roboto', sans-serif; /* New font for trending tab */
-}
-
-.trending:hover {
-    background-color: #ececec;
-    transform: translateY(-3px);
-    z-index: 2;
-}
-
-.trending h2 {
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 24px;
-    text-align: center;
-}
-
-.trending ul {
-    padding: 0;
-}
-
-.trending ul li {
-    list-style-type: none;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-}
-
-.trending ul li:hover {
-    transform: translateY(-5px);
-}
-
-.trending a {
-    text-decoration: none;
-    color: #007bff;
-    transition: color 0.2s ease-in-out;
-    display: block;
-    padding: 10px;
-}
-
-.trending a:hover {
-    color: #0056b3;
-}
-
-/* Position sidebar to the left */
-@media (min-width: 768px) {
-    .sidebar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 250px;
+/* Adjustments for smaller screens */
+@media (max-width: 767px) {
+    .home-page {
+        padding-left: 0; /* Remove padding for smaller screens */
     }
 
-    .trending {
-        margin-left: 250px;
+    .carousel-section .carousel .slide,
+    .cards-section {
+        width: 100%; /* full width on smaller screens */
+        margin: 0; /* remove margin to fit the screen */
     }
 }
 
-/* Add these styles to your CSS file */
-
-.sidebar ul {
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    list-style-type: none;
-    margin-bottom: 10px;
-  }
-  
-  .course-button {
-    background-color: black;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+/* Position the toggle button at the bottom right */
+.create-post-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10; /* Ensure it's above other elements */
     cursor: pointer;
-    transition: background-color 0.3s;
+    width: 50px; /* Size of the circle */
+    height: 50px;
+    background-color: #007bff; /* Button color */
+    color: white;
+    border-radius: 50%; /* Makes it a circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px; /* Size of the plus icon */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: add shadow for depth */
+
   }
   
-  .course-button:hover {
-    background-color: black;
+  /* You can add :hover states or animations as needed */
+  .create-post-toggle:hover {
+    background-color: #0056b3; /* Slightly darker on hover */
   }
   
-  .add-post-button{
-    background-color: #333;
-    border: #0056b3;
-  }
 
   /* homepage.css */
-
-  
-
-  .course-content {
-    flex-grow: 1;
-    overflow-y: auto; /* for scrolling through posts */
-  }
-  
-  .add-post-button {
-    position: fixed; /* Fixed position */
-    right: 20px; /* Right side of the screen */
-    top: 20px; /* Top of the screen */
-    background-color: #4CAF50; /* Example color */
+.course-button {
+    background-color: green; /* Button color */
+    color: white; /* Text color */
     border: none;
-    border-radius: 50%; /* Circle shape */
-    width: 50px; /* Size of the button */
-    height: 50px; /* Size of the button */
-    text-align: center;
-    line-height: 50px; /* Center the plus sign vertically */
-    font-size: 30px; /* Size of the plus sign */
-    color: white;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin: 5px 0; /* Spacing between buttons */
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    width: 100%; /* Make buttons full width */
   }
   
-  /* CoursePosts.css */
-  .course-posts {
-    padding: 20px;
-  }
-  
-  .post-tile {
-    background-color: #f5f5f5; /* Light gray, you can change this */
-    color: #333; /* Dark text color, you can change this */
-    border-bottom: 1px solid #e1e1e1; /* Border color */
-    padding: 15px;
-    margin-bottom: 10px; /* Space between posts */
-  }
+

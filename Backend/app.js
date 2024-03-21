@@ -2,12 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { signUp, login } = require('./auth');
 const { getUserDetailsByEmail, getUserCourses } = require('./courses');
-const { createPost, deletePost, editPost, getPosts, getPostId } = require('./post');
+const { createPost, deletePost, editPost, getPosts, getPostId, checkAuthorization, getPostById } = require('./post');
 const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all routes
+
+
 
 // Signup Endpoint
 app.post('/signup', async (req, res) => {
@@ -48,25 +50,38 @@ app.post("/create-post", async (req, res) => {
 });
 
 
+// Delete Post Endpoint
 app.delete("/delete-post/:userId/:postId", async (req, res) => {
   const userId = req.params.userId;
   const postId = req.params.postId;
   try {
-    const result = await deletePost(userId, postId);
-    res.status(result.status).json({ message: result.message });
+    const isAuthorized = await checkAuthorization(userId, postId); // Check if user is authorized to delete this post
+    if (isAuthorized) {
+      const result = await deletePost(userId, postId); // Call deletePost function to delete the post
+      res.status(result.status).json({ message: result.message });
+    } else {
+      res.status(403).json({ message: "Unauthorized to delete this post" });
+    }
   } catch (error) {
     console.error("Error deleting post:", error);
     res.status(500).json({ message: "Failed to delete post" });
   }
 });
 
+
+// Edit Post Endpoint
 app.put("/edit-post/:userId/:postId", async (req, res) => {
   const userId = req.params.userId;
   const postId = req.params.postId;
   const { title, content } = req.body;
   try {
-    const result = await editPost(userId, postId, title, content);
-    res.status(result.status).json({ message: result.message });
+    const isAuthorized = await checkAuthorization(userId, postId);
+    if (isAuthorized) {
+      const result = await editPost(userId, postId, title, content); // Assuming you have a function to edit a post
+      res.status(result.status).json({ message: result.message });
+    } else {
+      res.status(403).json({ message: "Unauthorized to edit this post" });
+    }
   } catch (error) {
     console.error("Error editing post:", error);
     res.status(500).json({ message: "Failed to edit post" });
@@ -74,28 +89,31 @@ app.put("/edit-post/:userId/:postId", async (req, res) => {
 });
 
 
+
 app.get("/posts/:courseId", async (req, res) => {
   const courseId = req.params.courseId;
   try {
     const posts = await getPosts(courseId);
     res.status(200).json(posts);
+    console.log("Posts Fetched!")
   } catch (error) {
     console.error("Error getting posts:", error);
     res.status(500).json({ message: "Failed to get posts" });
   }
 });
 
-app.post("/postId", async (req, res) => {
-  const { title, course, content } = req.body;
+// Endpoint to fetch post ID
+app.post('/postId', async (req, res) => {
   try {
-    const result = await getPostId(title, course, content);
+    const { userId,title, content, courseId } = req.body;
+    const result = await getPostId(userId,title, content, courseId);
+    console.log(result);
     res.status(result.status).json({ postId: result.postId });
   } catch (error) {
-    console.error("Error getting postId:", error);
-    res.status(500).json({ message: "Failed to get postId" });
+    console.error('Error fetching post ID:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
-
 
 // // Endpoint for user details
 app.post('/user-details', async (req, res) => {

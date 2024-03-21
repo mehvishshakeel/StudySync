@@ -1,60 +1,203 @@
+
+/* CoursePosts.css */
+@media (min-width: 768px) {
+  .cards-section {
+      padding-left: 250px; /* Offset for the sidebar */
+  }
+}
+
+
+/* Adjustments in CoursePosts.css for cards */
+.cards-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center cards horizontally */
+  max-height: 1000px;
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding: 0 20px; /* Add padding on the sides for some spacing from the content area borders */
+}
+
+.card {
+  width: 90%; /* Full width of the .cards-section minus padding */
+  margin-bottom: 20px; /* Adjust spacing between cards if needed */
+  padding: 20px; /* Consistent padding inside the card */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 8px; /* Rounded corners */
+  background-color: white; /* Card background color */
+  position: relative; /* For absolute positioning of child elements */
+}
+
+/* Adjustments in CreatePostForm.css for the form container and its elements */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the form within this container */
+  width: 100%; /* Full width to match the cards-section */
+}
+
+.form-container label, 
+.form-container input[type="text"], 
+.form-container textarea, 
+.form-container button[type="submit"] {
+  width: 100%; /* Full width of the form container */
+  margin: 10px 0; /* Add some margin to the top and bottom for spacing */
+}
+
+.form-container input[type="text"],
+.form-container textarea {
+  padding: 10px; /* Padding for input and textarea */
+  border: 1px solid #ccc; /* Border to match the design */
+  border-radius: 5px; /* Rounded corners for inputs */
+}
+
+.form-container button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
+
+.card-actions {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.edit-action, .delete-action {
+  cursor: pointer;
+  display: block;
+  padding: 8px;
+  font-size: 24px;
+  line-height: 0;
+  position: relative;
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 60px;
+  background-color: black;
+  color: red;
+  text-align: center;
+  border-radius: 6px;
+  margin: 2px;
+  position: absolute;
+  z-index: 1;
+  top: 10px; 
+  right: 10px; 
+  font-size: medium;
+}
+
+.edit-action:hover .tooltip, .delete-action:hover .tooltip {
+  visibility: visible;
+}
+
+.trending a:hover {
+  color: #0056b3;
+}
+
+/* Position sidebar to the left */
+@media (min-width: 768px) {
+  .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 250px;
+  }
+
+  .trending {
+      margin-left: 250px;
+  }
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 767px) {
+  .home-page {
+      padding-left: 0; /* Remove padding for smaller screens */
+  }
+
+  .carousel-section .carousel .slide,
+  .cards-section {
+      width: 100%; /* full width on smaller screens */
+      margin: 0; /* remove margin to fit the screen */
+  }
+}
+
+
+.no-posts-tile {
+  background-color: #f0f0f0; /* Light gray background */
+  padding: 20px; /* Add padding */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  max-height: fit-content;
+  max-width: 500px; /* Limit width to avoid stretching across the screen */
+  margin: 0 auto; /* Center horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+}
+
+.no-posts-message p {
+  margin-top: 20px; /* Add some space between each line */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  font-size: 200px;
+}
+
 /* CoursePosts.css */
 
-.course-posts {
-    margin-top: 20px; /* Add some spacing at the top */
-  }
-  
-  .course-header {
-    font-size: 24px; /* Larger font size for the course header */
-    margin-bottom: 20px; /* Add spacing below the header */
-  }
-  
-  .post-container {
-    display: grid; /* Use CSS grid for the tile layout */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid layout with minimum width of 300px */
-    grid-gap: 20px; /* Spacing between post tiles */
-  }
-  
-  .post-tile {
-    background-color: #f4f4f4; /* Background color of the tile */
-    border: 1px solid #ddd; /* Border around the tile */
-    border-radius: 5px; /* Rounded corners */
-    padding: 15px; /* Padding inside the tile */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for elevation */
-  }
-  
-  .post-title {
-    font-size: 18px; /* Font size of the title */
-    font-weight: bold; /* Bold font weight */
-    margin-bottom: 10px; /* Spacing below the title */
-  }
-  
-  .post-content {
-    font-size: 16px; /* Font size of the content */
-    line-height: 1.6; /* Line height for readability */
-  }
-  
-  /* CoursePosts.css */
-
-.course-posts {
-  padding: 20px;
-}
-
-.post-tile {
-  background-color: #f5f5f5; /* Light gray, you can change this */
-  color: #333; /* Dark text color, you can change this */
-  border-bottom: 1px solid #e1e1e1; /* Border color */
-  padding: 15px;
-  margin-bottom: 10px; /* Space between posts */
-}
-
-.post-actions {
+/* Styles for the course pick prompt */
+.course-pick-prompt {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.post-actions button {
-  margin-left: 10px;
-  color:#333;
+.course-pick-prompt p {
+  background-color: #f8f9fa; /* Change to match your existing color scheme */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the course no posts */
+.course-no-posts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: -10%;
+
+}
+
+.course-no-posts p {
+  background-color: #f8f9fa; /* Change to match your existing color scheme */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-post-text {
+  text-align: center;
+  font-size: 18px;
+  color: #333; /* Adjust the color as needed */
+  margin: 20px;
+}
+
+.no-post-text br {
+  display: block;
+  margin-bottom: 10px;
 }
