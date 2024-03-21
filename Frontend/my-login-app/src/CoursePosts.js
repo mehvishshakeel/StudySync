@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CoursePosts.css';
 
-function CoursePosts({ courseId, posts, userId, onDelete, onEdit }) {
+function CoursePosts({ courseId, posts, userId, onDelete, onEdit, onCourseChange }) {
   const [editMode, setEditMode] = useState(null); // State to track edit mode for each post
   const [editedTitle, setEditedTitle] = useState('');
   const [editedContent, setEditedContent] = useState('');
@@ -27,24 +27,35 @@ function CoursePosts({ courseId, posts, userId, onDelete, onEdit }) {
   // Sort posts by date, assuming each post has a 'createdAt' field indicating the creation date
   const sortedPosts = posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  
   const handleDelete = async (postId) => {
-    try {
-      const response = await fetch(`http://localhost:3003/delete-post/${userId}/${postId}`, {
-        method: 'DELETE',
-      });
-      if (response.ok) {
-        // Display confirmation message
-        alert('Post deleted successfully');
-        alert('Select the course again to ensure changes are set!');
-        // Trigger the parent component to refresh posts after deletion
-        onPostDeleted(postId);
-      } else {
-        console.error('Failed to delete post');
-        console.log('Actually it didnt - delete works!')
-        alert('OOPS ! That is NOT your POST');
+    // Confirm deletion with the user
+    const confirmDeletion = window.confirm("Are you sure you want to delete this post? This action is irreversible.");
+  
+    if (confirmDeletion) {
+      try {
+        const response = await fetch(`http://localhost:3003/delete-post/${userId}/${postId}`, {
+          method: 'DELETE',
+        });
+  
+        if (response.ok) {
+          // Display confirmation message
+          alert('Post deleted successfully');
+          
+          // Store the selected course ID in local storage
+          localStorage.setItem('selectedCourseId', courseId);
+  
+          // // Reload the page
+          onDelete(postId);
+          onCourseChange(courseId);
+
+        } else {
+          console.error('Failed to delete post');
+          alert('OOPS ! That is NOT your POST');
+        }
+      } catch (error) {
+        console.error('Error deleting post:', error);
       }
-    } catch (error) {
-      console.error('Error deleting post:', error);
     }
   };
 
@@ -150,3 +161,5 @@ function CoursePosts({ courseId, posts, userId, onDelete, onEdit }) {
 }
 
 export default CoursePosts;
+
+

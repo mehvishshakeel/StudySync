@@ -78,28 +78,7 @@ async function editPost(userId, postId, title, content) {
 }
 
 
-// async function getPosts(courseId) {
-//   return new Promise((resolve, reject) => {
-//     pool2.getConnection(async (err, connection) => {
-//       if (err) reject(err);
-//       const sqlSearch = "SELECT * FROM content WHERE CourseID = ?";
-//       const searchQuery = mysql.format(sqlSearch, [courseId]);
 
-//       connection.query(searchQuery, async (err, result) => {
-//         if (err) reject(err);
-//         connection.release();
-        
-//         const posts = result.map(post => ({
-//           title: post.Title,
-//           course: post.Course,
-//           content: post.Content
-//         }));
-        
-//         resolve(posts);
-//       });
-//     });
-//   });
-// }
 
 // Modify the getPosts function in your backend to include the postId
 async function getPosts(courseId) {

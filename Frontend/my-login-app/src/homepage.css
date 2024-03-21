@@ -1,23 +1,33 @@
 /* homepage.css */
+
+/* Overall styling for the home page */
 .home-page {
-    padding-left: 250px; /* sidebar width */
-    padding-top: 20px; /* to ensure there's space at the top */
-    min-height: 100vh; /* full height */
+    padding-left: 250px; /* Sidebar width */
+    padding-top: 20px; /* Ensure space at the top */
+    min-height: 100vh; /* Full height */
 }
 
-/* Adjust the max-width of the carousel slide to match the card width */
+/* Carousel section styling */
 .carousel-section .carousel .slide {
-    max-width: 60%; /* same as card width */
+    max-width: 60%; /* Match card width */
     margin-left: auto;
     margin-right: auto;
 }
 
+/* Adjustments for smaller screens */
 @media (max-width: 767px) {
     .home-page {
-        padding-left: 0; /* On smaller screens, the sidebar isn't fixed */
+        padding-left: 0; /* Remove padding for smaller screens */
+    }
+
+    .carousel-section .carousel .slide,
+    .cards-section {
+        width: 100%; /* Full width on smaller screens */
+        margin: 0; /* Remove margin to fit the screen */
     }
 }
 
+/* Sidebar styling */
 .sidebar {
     flex: 1;
     background-color: #f0f0f0;
@@ -50,59 +60,86 @@
 
 .sidebar ul {
     padding: 0;
-    list-style-type: none; 
+    list-style-type: none;
 }
 
-/* Adjustments for smaller screens */
-@media (max-width: 767px) {
-    .home-page {
-        padding-left: 0; /* Remove padding for smaller screens */
-    }
-
-    .carousel-section .carousel .slide,
-    .cards-section {
-        width: 100%; /* full width on smaller screens */
-        margin: 0; /* remove margin to fit the screen */
-    }
-}
-
-/* Position the toggle button at the bottom right */
+/* Create post toggle button styling */
 .create-post-toggle {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 10; /* Ensure it's above other elements */
+    z-index: 10;
     cursor: pointer;
-    width: 50px; /* Size of the circle */
+    width: 50px;
     height: 50px;
-    background-color: #007bff; /* Button color */
+    background-color: #007bff;
     color: white;
-    border-radius: 50%; /* Makes it a circle */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px; /* Size of the plus icon */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: add shadow for depth */
+    font-size: 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-  }
-  
-  /* You can add :hover states or animations as needed */
-  .create-post-toggle:hover {
-    background-color: #0056b3; /* Slightly darker on hover */
-  }
-  
+.create-post-toggle:hover {
+    background-color: #0056b3;
+}
 
-  /* homepage.css */
+/* Course button styling */
 .course-button {
-    background-color: green; /* Button color */
+    background-color:linear-gradient(0deg, #509552, rgb(4, 88, 4));
     color: white; /* Text color */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    padding: 12px 20px; /* Padding around the text */
+    margin: 10px 0; /* Spacing between buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    width: 100%; /* Make buttons full width */
+    font-size: 16px; /* Increase font size */
+    font-weight: bold; /* Bold text */
+}
+
+.course-button:hover {
+    background-color: #1d531f; /* Darker green color on hover */
+}
+/* Adjustments in homepage.css for buttons */
+.course-button {
+    background: linear-gradient(90deg, #4CAF50, #176a24); /* Green to white gradient */
+    color: whitesmoke;
     border: none;
     border-radius: 4px;
     padding: 10px 15px;
     margin: 5px 0; /* Spacing between buttons */
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-    width: 100%; /* Make buttons full width */
+    transition: background 0.3s ease; /* Smooth transition for the background color */
   }
   
+  .course-button:hover {
+    background: linear-gradient(90deg, #45a049, #FFFFFF); /* Darker green to white gradient on hover */
+  }
+/* Title styling */
+.title {
+    font-size: 36px; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    margin-bottom: 20px; /* Add some space below the title */
+}
 
+/* Adjustments for smaller screens */
+@media (max-width: 767px) {
+    .title {
+        font-size: 24px; /* Decrease font size for smaller screens */
+    }
+}
+
+.brand-name {
+    display: flex;
+    flex-direction: column;
+    font-size: 33px; /* Increase the font size */
+    font-weight: bold; /* Make the font bold */
+    background: linear-gradient(0deg,green,rgb(4, 4, 4)); /* Change the color to make it stand out */
+    color: white;
+    padding-left: 2px;
+  }
+  
