@@ -80,8 +80,6 @@ function CreatePostForm({ courseId, userId, program, onPostCreated }) {
         setContent('');
         // Show success message
         alert('Post created successfully');
-        // Trigger the parent component to refresh posts after creation
-
         onPostCreated();
       } else {
         console.error('Failed to create post');

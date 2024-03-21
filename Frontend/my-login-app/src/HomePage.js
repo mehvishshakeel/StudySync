@@ -1,4 +1,3 @@
-// //HomePage.js
 
 
 // import React, { useState, useEffect } from 'react';
@@ -16,13 +15,16 @@
 //   const [userId, setUserId] = useState(null); // State to store user ID
 //   const [program, setProgram] = useState(null); // State to store program
 //   const [showCreatePostForm, setShowCreatePostForm] = useState(false); // State to control visibility of create post form
+//   const [selectedCourseId, setSelectedCourseId] = useState(null);
 
-//   // Toggle the visibility of the create post form
-//   const toggleCreatePostForm = () => {
-//     setShowCreatePostForm(!showCreatePostForm);
-//   };
-
-
+//   const mentalHealthTips = [
+//     { id: 1, tip: "Take time for yourself every day, even if it's just a few minutes." },
+//     { id: 2, tip: "Stay connected with friends and family to share your feelings and experiences." },
+//     { id: 3, tip: "Maintain a regular sleep schedule to improve your mood and energy levels." },
+//     { id: 4, tip: "Exercise regularly to reduce stress, anxiety, and symptoms of depression." },
+//     { id: 5, tip: "Practice mindfulness or meditation to help clear your mind and reduce stress." },
+//   ];
+  
 //   useEffect(() => {
 //     const fetchUserDetails = async () => {
 //       try {
@@ -67,12 +69,13 @@
 
 //   const handleCourseClick = async (courseId) => {
 //     setSelectedCourse(courseId);
+//     setSelectedCourseId(courseId);
 //     try {
 //       const response = await fetch(`http://localhost:3003/posts/${courseId}`);
 //       if (response.ok) {
 //         const posts = await response.json();
 //         setCoursePosts(posts);
-//         console.log(posts)
+//         setShowCreatePostForm(false); // Hide create post form when a course is selected
 //       } else {
 //         console.error('Failed to fetch posts for the selected course');
 //       }
@@ -81,72 +84,84 @@
 //     }
 //   };
 
+//   const handleCourseChange = (courseId) => {
+//     setSelectedCourseId(courseId);
+//   };
 
-//     // Define onDelete function to handle post deletion
-//     const handlePostDeletion = async (deletedPostId) => {
-//       try {
-//         // Make API call to delete post
-//         const response = await fetch(`http://localhost:3003/delete-post/${userId}/${deletedPostId}`, {
-//           method: 'DELETE',
-//         });
-//         if (response.ok) {
-//           // If deletion is successful, update the state to reflect the deleted post
-//           setCoursePosts(coursePosts.filter(post => post.postId !== deletedPostId));
-//         } else {
-//           console.error('Failed to delete post');
-//         }
-//       } catch (error) {
-//         console.error('Error deleting post:', error);
-//       }
-//     };
-
-//   // Function to refresh posts after a post is created
-//   const handlePostCreated = async () => {
+//   // Function to handle creating a new post
+//   const handleCreatePost = async (newPostData) => {
 //     try {
-//       // Fetch the latest posts for the selected course
-//       const response = await fetch(`http://localhost:3003/posts/${selectedCourse}`);
+//       const response = await fetch('http://localhost:3003/create-post', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(newPostData),
+//       });
+
 //       if (response.ok) {
-//         const posts = await response.json();
-//         setCoursePosts(posts);
-//         // Reset selected course to trigger re-rendering of CoursePosts component
-//         setSelectedCourse(null);
-//         setSelectedCourse(selectedCourse); // This will trigger re-rendering of CoursePosts component
+//         // Post created successfully
+//         console.log('Post created successfully');
+//         // Fetch the latest posts for the selected course
+//         const response = await fetch(`http://localhost:3003/posts/${selectedCourse}`);
+//         if (response.ok) {
+//           const posts = await response.json();
+//           // setCoursePosts(posts);
+//           // Update the state to include the new post
+//           setCoursePosts([...coursePosts, posts])
+//           // Reset selected course to trigger re-rendering of CoursePosts component
+//           setSelectedCourse(null);
+//           setSelectedCourse(selectedCourse); // This will trigger re-rendering of CoursePosts component
+//         } else {
+//           console.error('Failed to fetch posts for the selected course');
+//         }
 //       } else {
-//         console.error('Failed to fetch posts for the selected course');
+//         console.error('Failed to create post');
 //       }
 //     } catch (error) {
-//       console.error('Error fetching posts:', error);
+//       console.error('Error creating post:', error);
 //     }
 //   };
 
-//   // Function to handle navigation back to course posts
-//   const handleBackToCoursePosts = () => {
-//     setSelectedCourse(null); // Clear selected course to trigger rendering of course posts
-//     setShowCreatePostForm(false); // Hide create post form
+//   // Function to handle deleting a post
+//   const handlePostDeletion = async (deletedPostId) => {
+//     try {
+//       // Make API call to delete post
+//       const response = await fetch(`http://localhost:3003/delete-post/${userId}/${deletedPostId}`, {
+//         method: 'DELETE',
+//       });
+//       if (response.ok) {
+//         // If deletion is successful, update the state to reflect the deleted post
+//         setCoursePosts(coursePosts.filter(post => post.postId !== deletedPostId));
+//       } else {
+//         console.error('Failed to delete post');
+//       }
+//     } catch (error) {
+//       console.error('Error deleting post:', error);
+//     }
 //   };
 
-//   const mentalHealthTips = [
-//     { id: 1, tip: "Take time for yourself every day, even if it's just a few minutes." },
-//     { id: 2, tip: "Stay connected with friends and family to share your feelings and experiences." },
-//     { id: 3, tip: "Maintain a regular sleep schedule to improve your mood and energy levels." },
-//     { id: 4, tip: "Exercise regularly to reduce stress, anxiety, and symptoms of depression." },
-//     { id: 5, tip: "Practice mindfulness or meditation to help clear your mind and reduce stress." },
-//   ];
+//   // Function to toggle the visibility of the create post form
+//   const toggleCreatePostForm = () => {
+//     setShowCreatePostForm(!showCreatePostForm);
+//   };
 
 //   return (
 //     <div className="home-page">
 //       <section className="carousel-section">
-//         <Carousel showArrows={false} infiniteLoop={true} autoPlay={true} interval={3000} showThumbs={false} showIndicators={false} showStatus={false}>
+//              <section className="carousel-section">
+//      <Carousel showArrows={false} infiniteLoop={true} autoPlay={true} interval={3000} showThumbs={false} showIndicators={false} showStatus={false}>
 //           {mentalHealthTips.map((tip, index) => (
 //             <div key={index}>
 //               <h2>Mental Health Tip</h2>
-//               <p>{tip.tip}</p>
-//             </div>
-//           ))}
-//         </Carousel>
+//               <p>{tip.tip}</p>             
+//               </div>
+//            ))}         
+//            </Carousel>
+//        </section>
 //       </section>
 //       <aside className="sidebar">
-//         <h1>STUDYSYNC</h1>
+//         <h1 className='brand-name'>STUDYSYNC</h1>
 //         <h2>Your Courses</h2>
 //         <ul>
 //           {courses.map((course) => (
@@ -159,19 +174,25 @@
 //         </ul>
 //       </aside>
 //       <div className="create-post-toggle" onClick={toggleCreatePostForm}>
-//         <i className="fas fa-plus">+</i> {/* You can replace with an image or svg */}
+//         <i className="fasfaplus">+</i> {/* You can replace with an image or svg */}
 //       </div>
 //       {showCreatePostForm && (
 //         <section className="course-content">
-//           <CreatePostForm courseId={selectedCourse} userId={userId} program={program} onPostCreated={handlePostCreated} />
+//           <CreatePostForm courseId={selectedCourse} userId={userId} program={program} onPostCreated={handleCreatePost} />
 //         </section>
 //       )}
 
-//       {!selectedCourse && !showCreatePostForm && (
+//       {selectedCourse && !showCreatePostForm && (
 //         <section className="course-content">
-//           <CreatePostForm courseId={selectedCourse} userId={userId} program={program} onPostCreated={handlePostCreated} />
-//           <button onClick={handleBackToCoursePosts}>Cancel</button>
-
+//           <CoursePosts
+//             courseId={selectedCourse}
+//             posts={coursePosts}
+//             userId={userId}
+//             onDelete={handlePostDeletion}
+//             onEdit={handleCourseClick} // Pass handleCourseClick as a prop
+//             onCourseChange={handleCourseChange}
+//           />
+//           {/* <button onClick={toggleCreatePostForm}>Create New Post</button> */}
 //         </section>
 //       )}
 //     </div>
@@ -193,9 +214,9 @@ function HomePage() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [loggedInUser, setLoggedInUser] = useState(null); 
   const [coursePosts, setCoursePosts] = useState([]);
-  const [userId, setUserId] = useState(null); // State to store user ID
-  const [program, setProgram] = useState(null); // State to store program
-  const [showCreatePostForm, setShowCreatePostForm] = useState(false); // State to control visibility of create post form
+  const [userId, setUserId] = useState(null);
+  const [program, setProgram] = useState(null);
+  const [showCreatePostForm, setShowCreatePostForm] = useState(false);
 
   const mentalHealthTips = [
     { id: 1, tip: "Take time for yourself every day, even if it's just a few minutes." },
@@ -204,7 +225,7 @@ function HomePage() {
     { id: 4, tip: "Exercise regularly to reduce stress, anxiety, and symptoms of depression." },
     { id: 5, tip: "Practice mindfulness or meditation to help clear your mind and reduce stress." },
   ];
-  
+
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -220,9 +241,8 @@ function HomePage() {
           });
           if (userDetailsResponse.ok) {
             const userDetails = await userDetailsResponse.json();
-            setUserId(userDetails.userId); // Set the user ID
-            setProgram(userDetails.program); // Set the program
-            // Now fetch the user courses
+            setUserId(userDetails.userId);
+            setProgram(userDetails.program);
             const userCoursesResponse = await fetch('http://localhost:3003/user-courses', {
               method: 'POST',
               headers: {
@@ -248,13 +268,13 @@ function HomePage() {
   }, []);
 
   const handleCourseClick = async (courseId) => {
-    setSelectedCourse(courseId);
     try {
+      setSelectedCourse(courseId);
       const response = await fetch(`http://localhost:3003/posts/${courseId}`);
       if (response.ok) {
         const posts = await response.json();
         setCoursePosts(posts);
-        setShowCreatePostForm(false); // Hide create post form when a course is selected
+        setShowCreatePostForm(false);
       } else {
         console.error('Failed to fetch posts for the selected course');
       }
@@ -263,7 +283,6 @@ function HomePage() {
     }
   };
 
-  // Function to handle creating a new post
   const handleCreatePost = async (newPostData) => {
     try {
       const response = await fetch('http://localhost:3003/create-post', {
@@ -273,50 +292,53 @@ function HomePage() {
         },
         body: JSON.stringify(newPostData),
       });
-
+      
       if (response.ok) {
-        // Post created successfully
-        console.log('Post created successfully');
-        // Fetch the latest posts for the selected course
-        const response = await fetch(`http://localhost:3003/posts/${selectedCourse}`);
+        console.log('here');
         if (response.ok) {
+          console.log('Failed to create post')
+        } 
+      }else {
+          console.error('Now Showing Updated Posts');
+          const response = await fetch(`http://localhost:3003/posts/${selectedCourse}`);
           const posts = await response.json();
-          // setCoursePosts(posts);
-          // Update the state to include the new post
-          setCoursePosts([...coursePosts, posts])
-          // Reset selected course to trigger re-rendering of CoursePosts component
-          setSelectedCourse(null);
-          setSelectedCourse(selectedCourse); // This will trigger re-rendering of CoursePosts component
-        } else {
-          console.error('Failed to fetch posts for the selected course');
+          setCoursePosts(posts);
+          setShowCreatePostForm(false);
         }
-      } else {
-        console.error('Failed to create post');
-      }
-    } catch (error) {
+      } catch (error) {
       console.error('Error creating post:', error);
-    }
-  };
-
-  // Function to handle deleting a post
+      }
+    };
+  
+  
+  
+  
+  
   const handlePostDeletion = async (deletedPostId) => {
     try {
-      // Make API call to delete post
       const response = await fetch(`http://localhost:3003/delete-post/${userId}/${deletedPostId}`, {
         method: 'DELETE',
       });
       if (response.ok) {
-        // If deletion is successful, update the state to reflect the deleted post
-        setCoursePosts(coursePosts.filter(post => post.postId !== deletedPostId));
+        console.log('here')
+        if (response.ok) 
+        {
+          console.error('Failed to fetch posts for the selected course');
+        }
       } else {
+        // Post deleted successfully, fetch the updated posts for the selected course
+        const response = await fetch(`http://localhost:3003/posts/${selectedCourse}`);
+        const posts = await response.json();
+        setCoursePosts(posts);
         console.error('Failed to delete post');
       }
     } catch (error) {
       console.error('Error deleting post:', error);
     }
   };
+  
+  
 
-  // Function to toggle the visibility of the create post form
   const toggleCreatePostForm = () => {
     setShowCreatePostForm(!showCreatePostForm);
   };
@@ -324,19 +346,17 @@ function HomePage() {
   return (
     <div className="home-page">
       <section className="carousel-section">
-             <section className="carousel-section">
-     <Carousel showArrows={false} infiniteLoop={true} autoPlay={true} interval={3000} showThumbs={false} showIndicators={false} showStatus={false}>
+        <Carousel showArrows={false} infiniteLoop autoPlay interval={3000} showThumbs={false} showIndicators={false} showStatus={false}>
           {mentalHealthTips.map((tip, index) => (
             <div key={index}>
               <h2>Mental Health Tip</h2>
               <p>{tip.tip}</p>             
-              </div>
-           ))}         
-           </Carousel>
-       </section>
+            </div>
+          ))}         
+        </Carousel>
       </section>
       <aside className="sidebar">
-        <h1>STUDYSYNC</h1>
+        <h1 className='brand-name'>STUDYSYNC</h1>
         <h2>Your Courses</h2>
         <ul>
           {courses.map((course) => (
@@ -349,7 +369,7 @@ function HomePage() {
         </ul>
       </aside>
       <div className="create-post-toggle" onClick={toggleCreatePostForm}>
-        <i className="fasfaplus">+</i> {/* You can replace with an image or svg */}
+        <i className="fasfa-plus">+</i> 
       </div>
       {showCreatePostForm && (
         <section className="course-content">
@@ -364,9 +384,7 @@ function HomePage() {
             posts={coursePosts}
             userId={userId}
             onDelete={handlePostDeletion}
-            onEdit={handleCourseClick} // Pass handleCourseClick as a prop
           />
-          {/* <button onClick={toggleCreatePostForm}>Create New Post</button> */}
         </section>
       )}
     </div>
