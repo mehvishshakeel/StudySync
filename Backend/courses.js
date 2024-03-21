@@ -2,29 +2,6 @@ const mysql = require('mysql');
 const { pool1 } = require('./database');
 const { pool3 } = require('./database');
 
-// Function to fetch user ID based on email
-async function getUserIdByEmail(email) {
-    return new Promise((resolve, reject) => {
-        pool1.getConnection(async (err, connection) => {
-            if (err) reject(err);
-
-            // Construct SQL query to fetch user ID based on email
-            const sqlQuery = 'SELECT year FROM user WHERE Email = ?';
-            const formattedQuery = mysql.format(sqlQuery, [email]);
-
-            // Execute SQL query
-            connection.query(formattedQuery, (err, results) => {
-                connection.release();
-                if (err) reject(err);
-                if (results.length === 0) {
-                    reject(new Error('User not found'));
-                } else {
-                    resolve(results[0].year);
-                }
-            });
-        });
-    });
-}
 
 async function getUserDetailsByEmail(email) {
     return new Promise((resolve, reject) => {
