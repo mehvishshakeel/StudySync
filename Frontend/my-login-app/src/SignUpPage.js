@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './css.css';
 
 function SignUpPage() {
@@ -23,6 +24,7 @@ function SignUpPage() {
     'Sustainable Systems Engineering',
     'Engineering Physics'
   ];
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,9 +55,10 @@ function SignUpPage() {
       if (!response.ok) {
         throw new Error('Failed to sign up');
       }
-
+      
       const data = await response.json();
       console.log(data);
+      navigate('/login'); // Use navigate function to navigate to '/login'
     } catch (error) {
       console.error('Error signing up:', error);
       alert('Failed to sign up. Please try again.');
