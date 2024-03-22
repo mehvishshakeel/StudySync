@@ -69,17 +69,20 @@ app.delete("/delete-post/:userId/:postId", async (req, res) => {
 });
 
 
-// Edit Post Endpoint
+// Add/Edit Post Endpoint
 app.put("/edit-post/:userId/:postId", async (req, res) => {
   const userId = req.params.userId;
   const postId = req.params.postId;
   const { title, content } = req.body;
   try {
+    // Check authorization before proceeding to edit the post
     const isAuthorized = await checkAuthorization(userId, postId);
     if (isAuthorized) {
-      const result = await editPost(userId, postId, title, content); // Assuming you have a function to edit a post
+      // If user is authorized, proceed with editing the post
+      const result = await editPost(userId, postID, title, content);
       res.status(result.status).json({ message: result.message });
     } else {
+      // If user is not authorized, return a 403 Forbidden status
       res.status(403).json({ message: "Unauthorized to edit this post" });
     }
   } catch (error) {
@@ -87,7 +90,6 @@ app.put("/edit-post/:userId/:postId", async (req, res) => {
     res.status(500).json({ message: "Failed to edit post" });
   }
 });
-
 
 
 app.get("/posts/:courseId", async (req, res) => {
@@ -141,7 +143,24 @@ app.post('/user-courses', async (req, res) => {
   }
 });
 
-
+// Check Authorization Endpoint
+app.get("/check-authorization/:userId/:postId", async (req, res) => {
+  const userId = req.params.userId;
+  const postId = req.params.postId;
+  try {
+    const isAuthorized = await checkAuthorization(userId, postId); // Check if user is authorized to edit this post
+    if (isAuthorized) {
+      // User is authorized
+      res.status(200).send('Authorized');
+    } else {
+      // User is not authorized
+      res.status(403).send('Unauthorized');
+    }
+  } catch (error) {
+    console.error("Error checking authorization:", error);
+    res.status(500).json({ message: "Failed to check authorization" });
+  }
+});
 
 const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {

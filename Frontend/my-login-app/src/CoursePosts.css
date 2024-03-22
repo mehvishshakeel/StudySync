@@ -212,3 +212,50 @@
   display: block;
   margin-bottom: 10px;
 }
+
+
+/* Styles for the edit form */
+.edit-form {
+  margin-top: 20px; /* Add some space between the post content and edit form */
+}
+
+.edit-form label {
+  display: block;
+  font-weight: bold;
+}
+
+.edit-form input[type="text"],
+.edit-form textarea {
+  width: 100%; /* Take up full width */
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.edit-form-buttons {
+  display: flex;
+  justify-content: space-between; /* Align buttons with space between them */
+}
+
+.edit-form button {
+  padding: 10px 20px;
+  background-color: #144118;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-form button:hover {
+  background-color: #035605;
+}
+
+.title-text{
+  color: white;
+}
+
+.content-text{
+  color: white;
+}
+

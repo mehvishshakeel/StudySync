@@ -92,11 +92,11 @@ function CreatePostForm({ courseId, userId, program, onPostCreated }) {
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <div className='title-div'>
-        <label htmlFor="title" >Title:</label>
+        <label htmlFor="title"className='title-text' >Title:</label>
         <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
       </div>
       <div className='content-div'>
-        <label htmlFor="content">Content:</label>
+        <label htmlFor="content" className='content-text'>Content:</label>
         <textarea id="content" value={content} onChange={(e) => setContent(e.target.value)} />
       </div>
       <button type="submit">Create Post</button>
