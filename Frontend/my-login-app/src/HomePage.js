@@ -337,6 +337,30 @@ function HomePage() {
     }
   };
   
+  const handlePostEdit = (postId) => {
+    // Trigger refresh of posts after editing
+    fetchCoursePosts(selectedCourse);
+  };
+  
+  const handleCourseChange = (courseId) => {
+    // Update the selected course posts
+    fetchCoursePosts(courseId);
+  };
+  
+  // Function to fetch course posts
+  const fetchCoursePosts = async (courseId) => {
+    try {
+      const response = await fetch(`http://localhost:3003/posts/${courseId}`);
+      if (response.ok) {
+        const posts = await response.json();
+        setCoursePosts(posts);
+      } else {
+        console.error('Failed to fetch posts for the selected course');
+      }
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  };
   
 
   const toggleCreatePostForm = () => {
@@ -384,6 +408,8 @@ function HomePage() {
             posts={coursePosts}
             userId={userId}
             onDelete={handlePostDeletion}
+            onEdit={handlePostEdit}
+            onCourseChange={handleCourseChange}
           />
         </section>
       )}
