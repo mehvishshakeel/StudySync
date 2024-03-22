@@ -161,6 +161,7 @@ function CoursePosts({ courseId, posts, userId, onDelete, onEdit, onCourseChange
         }
       } else {
         console.error('Failed to edit post');
+        alert('Seems like you are Trying to Edit a post that does not Belong to You. \nMaybe you Misclicked?');
       }
     } catch (error) {
       console.error('Error editing post:', error);
@@ -225,5 +226,4 @@ function CoursePosts({ courseId, posts, userId, onDelete, onEdit, onCourseChange
 }
 
 export default CoursePosts;
-
 

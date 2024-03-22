@@ -55,10 +55,10 @@ function SignUpPage() {
       if (!response.ok) {
         throw new Error('Failed to sign up');
       }
-      navigate('/login'); // Use navigate function to navigate to '/login'
       
       const data = await response.json();
       console.log(data);
+      navigate('/login'); // Use navigate function to navigate to '/login'
     } catch (error) {
       console.error('Error signing up:', error);
       alert('Failed to sign up. Please try again.');

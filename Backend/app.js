@@ -79,7 +79,7 @@ app.put("/edit-post/:userId/:postId", async (req, res) => {
     const isAuthorized = await checkAuthorization(userId, postId);
     if (isAuthorized) {
       // If user is authorized, proceed with editing the post
-      const result = await editPost(userId, postID, title, content);
+      const result = await editPost(userId, postId, title, content);
       res.status(result.status).json({ message: result.message });
     } else {
       // If user is not authorized, return a 403 Forbidden status
