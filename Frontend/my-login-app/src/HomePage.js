@@ -265,6 +265,8 @@ function HomePage() {
       }
     };
     fetchUserDetails();
+    alert("Please choose a Course to Display the Posts.")
+
   }, []);
 
   const handleCourseClick = async (courseId) => {
@@ -349,6 +351,7 @@ function HomePage() {
   
   // Function to fetch course posts
   const fetchCoursePosts = async (courseId) => {
+
     try {
       const response = await fetch(`http://localhost:3003/posts/${courseId}`);
       if (response.ok) {
