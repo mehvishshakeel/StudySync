@@ -31,37 +31,6 @@ function CoursePosts({ courseId, posts, userId, onDelete, onEdit, onCourseChange
   // Sort posts by date, assuming each post has a 'createdAt' field indicating the creation date
   const sortedPosts = posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  
-  // const handleDelete = async (postId) => {
-  //   // Confirm deletion with the user
-  //   const confirmDeletion = window.confirm("Are you sure you want to delete this post? This action is irreversible.");
-  
-  //   if (confirmDeletion) {
-  //     try {
-  //       const response = await fetch(`http://localhost:3003/delete-post/${userId}/${postId}`, {
-  //         method: 'DELETE',
-  //       });
-  
-  //       if (response.ok) {
-  //         // Display confirmation message
-  //         alert('Post deleted successfully');
-          
-  //         // Store the selected course ID in local storage
-  //         localStorage.setItem('selectedCourseId', courseId);
-  
-  //         // // Reload the page
-  //         onDelete(postId);
-  //         onCourseChange(courseId);
-
-  //       } else {
-  //         console.error('Failed to delete post');
-  //         alert('OOPS ! That is NOT your POST');
-  //       }
-  //     } catch (error) {
-  //       console.error('Error deleting post:', error);
-  //     }
-  //   }
-  // };
   const handleDelete = async (postId) => {
     // Confirm deletion with the user
     const confirmDeletion = window.confirm("Are you sure you want to delete this post? This action is irreversible.");
@@ -112,29 +81,7 @@ function CoursePosts({ courseId, posts, userId, onDelete, onEdit, onCourseChange
     setEditedContent('');
   };
 
-  // const handleSaveEdit = async (postId) => {
-  //   try {
-  //     const response = await fetch(`http://localhost:3003/edit-post/${userId}/${postId}`, {
-  //       method: 'PUT',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ title: editedTitle, content: editedContent }),
-  //     });
-  //     if (response.ok) {
-  //       alert('Post edited successfully');
-  //       onEdit(postId);
-  //       setEditMode(null);
-  //       setEditedTitle('');
-  //       setEditedContent('');
-        
-  //     } else {
-  //       console.error('Failed to edit post');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error editing post:', error);
-  //   }
-  // };
+
   
   const handleSaveEdit = async (postId) => {
     try {
