@@ -108,7 +108,7 @@ app.get("/posts/:courseId", async (req, res) => {
 app.post('/postId', async (req, res) => {
   try {
     const { userId,title, content, courseId } = req.body;
-    const result = await getPostId(userId,title, content, courseId);
+    const result = await getPostId(title, courseId, content);
     console.log(result);
     res.status(result.status).json({ postId: result.postId });
   } catch (error) {
