@@ -117,55 +117,57 @@ function CoursePosts({ courseId, posts, userId, onDelete, onEdit, onCourseChange
   
   return (
     <div className="course-posts">
-      <div className="cards-section">
-        {sortedPosts.map((post) => (
-          <div key={post.postId} className="card">
-            <div className="card-actions">
+      <div className='cards-container'>
+        <div className="cards-section">
+          {sortedPosts.map((post) => (
+            <div key={post.postId} className="card">
+              <div className="card-actions">
+                {editMode === post.PostID ? (
+                  <>
+                    {/* <button onClick={() => handleSaveEdit(post.PostID)}>Save</button>
+                    <button onClick={handleCancelEdit}>Cancel</button> */}
+                  </>
+                ) : (
+                  <>
+                    <span className="delete-action" onClick={() => handleDelete(post.PostID)}>
+                      <i className="fa fa-trash" aria-hidden="true"></i>
+                    </span>
+                    <span className="edit-action" onClick={() => handleEdit(post.PostID)}>
+                      <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </span>
+                  </>
+                )}
+              </div>
               {editMode === post.PostID ? (
-                <>
-                  {/* <button onClick={() => handleSaveEdit(post.PostID)}>Save</button>
-                  <button onClick={handleCancelEdit}>Cancel</button> */}
-                </>
+                <div className={`edit-form ${editMode === post.PostID ? 'visible' : 'hidden'}`}>
+                <label htmlFor="editedTitle" className='title-text'>Title:</label>
+                <input
+                  type="text"
+                  id="editedTitle"
+                  value={editedTitle}
+                  onChange={(e) => setEditedTitle(e.target.value)}
+                />
+                <label htmlFor="editedContent" className='content-text'>Content:</label>
+                <textarea
+                  id="editedContent"
+                  value={editedContent}
+                  onChange={(e) => setEditedContent(e.target.value)}
+                />
+                <div className="edit-form-buttons">
+                  <button className ='save-button' onClick={() => handleSaveEdit(post.PostID)}>Save</button>
+                  <button className='cancel-button' onClick={handleCancelEdit}>Cancel</button>
+                </div>
+              </div>
+
               ) : (
                 <>
-                  <span className="delete-action" onClick={() => handleDelete(post.PostID)}>
-                    <i className="fa fa-trash" aria-hidden="true"></i>
-                  </span>
-                  <span className="edit-action" onClick={() => handleEdit(post.PostID)}>
-                    <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  </span>
+                  <h4>{post.Title}</h4>
+                  <p>{post.Content}</p>
                 </>
               )}
             </div>
-            {editMode === post.PostID ? (
-              <div className={`edit-form ${editMode === post.PostID ? 'visible' : 'hidden'}`}>
-              <label htmlFor="editedTitle" className='title-text'>Title:</label>
-              <input
-                type="text"
-                id="editedTitle"
-                value={editedTitle}
-                onChange={(e) => setEditedTitle(e.target.value)}
-              />
-              <label htmlFor="editedContent" className='content-text'>Content:</label>
-              <textarea
-                id="editedContent"
-                value={editedContent}
-                onChange={(e) => setEditedContent(e.target.value)}
-              />
-              <div className="edit-form-buttons">
-                <button className ='save-button' onClick={() => handleSaveEdit(post.PostID)}>Save</button>
-                <button className='cancel-button' onClick={handleCancelEdit}>Cancel</button>
-              </div>
-            </div>
-
-            ) : (
-              <>
-                <h4>{post.Title}</h4>
-                <p>{post.Content}</p>
-              </>
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -173,4 +175,5 @@ function CoursePosts({ courseId, posts, userId, onDelete, onEdit, onCourseChange
 }
 
 export default CoursePosts;
+
 

@@ -15,13 +15,20 @@ function HomePage() {
   const [userId, setUserId] = useState(null);
   const [program, setProgram] = useState(null);
   const [showCreatePostForm, setShowCreatePostForm] = useState(false);
+  const [darkMode, setDarkMode] = useState(false); // State for dark mode
+  const [currentSlide, setCurrentSlide] = useState(0); // State for current carousel slide
 
   const mentalHealthTips = [
-    { id: 1, tip: "Take time for yourself every day, even if it's just a few minutes." },
-    { id: 2, tip: "Stay connected with friends and family to share your feelings and experiences." },
-    { id: 3, tip: "Maintain a regular sleep schedule to improve your mood and energy levels." },
-    { id: 4, tip: "Exercise regularly to reduce stress, anxiety, and symptoms of depression." },
-    { id: 5, tip: "Practice mindfulness or meditation to help clear your mind and reduce stress." },
+    { id: 1, tip: "Practice deep breathing exercises to reduce stress and promote relaxation." },
+    { id: 2, tip: "Limit your consumption of caffeine and alcohol, as they can worsen anxiety and disrupt sleep patterns." },
+    { id: 3, tip: "Set realistic goals for yourself and celebrate your achievements, no matter how small." },
+    { id: 4, tip: "Engage in hobbies or activities that you enjoy to boost your mood and overall well-being." },
+    { id: 5, tip: "Seek professional help if you're struggling with your mental health. Therapy and counseling can provide valuable support and coping strategies." },
+    { id: 6, tip: "Stay hydrated throughout the day to maintain optimal brain function and physical health." },
+    { id: 7, tip: "Limit screen time, especially before bedtime, to improve sleep quality and reduce feelings of restlessness." },
+    { id: 8, tip: "Practice gratitude by reflecting on the positive aspects of your life and expressing appreciation for the people around you." },
+    { id: 9, tip: "Establish a routine that includes regular exercise, healthy meals, and sufficient sleep to promote overall wellness." },
+    { id: 10, tip: "Connect with nature by spending time outdoors, which can reduce stress and increase feelings of calmness and happiness." },
   ];
 
   useEffect(() => {
@@ -63,8 +70,6 @@ function HomePage() {
       }
     };
     fetchUserDetails();
-    alert("Please choose a Course to Display the Posts.")
-    
   }, []);
 
   const handleCourseClick = async (courseId) => {
@@ -110,46 +115,37 @@ function HomePage() {
       }
     };
   
-  
-  
-  
-  
+
   const handlePostDeletion = async (deletedPostId) => {
     try {
       const response = await fetch(`http://localhost:3003/delete-post/${userId}/${deletedPostId}`, {
         method: 'DELETE',
       });
       if (response.ok) {
-        console.log('here')
-        if (response.ok) 
-        {
-          console.error('Failed to fetch posts for the selected course');
-        }
-      } else {
-        // Post deleted successfully, fetch the updated posts for the selected course
+        console.log('Post deleted successfully');
         const response = await fetch(`http://localhost:3003/posts/${selectedCourse}`);
         const posts = await response.json();
         setCoursePosts(posts);
+      } else {
         console.error('Failed to delete post');
       }
     } catch (error) {
       console.error('Error deleting post:', error);
     }
   };
-  
+
   const handlePostEdit = (postId) => {
     // Trigger refresh of posts after editing
     fetchCoursePosts(selectedCourse);
   };
-  
+
   const handleCourseChange = (courseId) => {
     // Update the selected course posts
     fetchCoursePosts(courseId);
   };
-  
+
   // Function to fetch course posts
   const fetchCoursePosts = async (courseId) => {
-
     try {
       const response = await fetch(`http://localhost:3003/posts/${courseId}`);
       if (response.ok) {
@@ -162,42 +158,72 @@ function HomePage() {
       console.error('Error fetching posts:', error);
     }
   };
-  
 
   const toggleCreatePostForm = () => {
     setShowCreatePostForm(!showCreatePostForm);
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const handleCarouselChange = (index) => {
+    setCurrentSlide(index);
+  };
+
   return (
-    <div className="home-page">
+    <div className={`home-page ${darkMode ? 'dark-mode' : ''}`}>
       <section className="carousel-section">
-        <Carousel showArrows={false} infiniteLoop autoPlay interval={3000} showThumbs={false} showIndicators={false} showStatus={false}>
+        <Carousel
+          showArrows={false}
+          infiniteLoop
+          autoPlay
+          interval={3575}
+          showThumbs={false}
+          showIndicators={true} // Add dots to indicate slide number
+          showStatus={false}
+        >
           {mentalHealthTips.map((tip, index) => (
             <div key={index}>
               <h2>Mental Health Tip</h2>
-              <p>{tip.tip}</p>             
+              <p>{tip.tip}</p>
             </div>
-          ))}         
+          ))}
         </Carousel>
       </section>
-      <aside className="sidebar">
-        <h1 className='brand-name'>STUDYSYNC</h1>
-        <h2>Your Courses</h2>
-        <ul>
+
+      <aside className={`sidebar ${darkMode ? 'dark-mode' : ''}`}>
+        <div className="sidebar-header">
+          <h1 className='brand-name'>STUDYSYNC</h1>
+          <div className="sidebar-buttons">
+            <button className="Display" onClick={toggleDarkMode}>
+              {darkMode ? "Light Mode" : "Night Mode"}
+            </button>
+            <button className="Post" onClick={toggleCreatePostForm}>
+              <div classname="plus-add-post">
+                {darkMode ? "+" : "+"}
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <h2>Courses</h2>
+        <ul className='course-button-container'>
           {courses.map((course) => (
             <li key={course.id}>
               <button className="course-button" onClick={() => handleCourseClick(course.id)}>
+                <div className='course-button-text'>
                 {course.course_name}
+                </div>
               </button>
             </li>
           ))}
         </ul>
       </aside>
-      <div className="create-post-toggle" onClick={toggleCreatePostForm}>
-        <i className="fasfa-plus">+</i> 
-      </div>
+
       {showCreatePostForm && (
         <section className="course-content">
+          <i className={` ${darkMode ? 'dark-mode' : ''}`}></i>
           <CreatePostForm courseId={selectedCourse} userId={userId} program={program} onPostCreated={handleCreatePost} />
         </section>
       )}
@@ -219,3 +245,4 @@ function HomePage() {
 }
 
 export default HomePage;
+
