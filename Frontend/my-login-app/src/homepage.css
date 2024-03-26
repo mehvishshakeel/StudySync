@@ -206,7 +206,7 @@
 .carousel-section {
     max-width: 80%;
     margin: auto;
-    margin-top: -2%;
+    margin-top: -6%;
     background-color: transparent; /* Light background color */
     padding: 20px;
     border-radius: 8px; /* Rounded corners */
@@ -261,3 +261,56 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+
+/* HomePage.css */
+
+/* Layout for HomePage */
+.home-page {
+    display: flex; /* Use flexbox for layout */
+    overflow-x: hidden; /* Hide horizontal overflow */
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    flex: 0 0 250px; /* Fixed width for sidebar */
+    height: 100vh; /* Full height */
+    background: linear-gradient(90deg, #009966, #206e20); /* Gradient colors */
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s; /* Smooth transition on background color change */
+    color:white;
+  }
+  
+  /* Main content styling */
+  .main-content {
+    flex: 1; /* Flexible width to occupy remaining space */
+    padding: 20px; /* Add padding for spacing */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  /* Dark mode for sidebar */
+  .sidebar.dark-mode {
+    background: linear-gradient(90deg, #009966, #003300); /* Gradient colors */
+  }
+  
+  /* Dark mode for main content */
+  .main-content.dark-mode {
+    background-color: #222; /* Dark background color */
+  }
+  
+  /* Brand name/title */
+  .brand-name {
+    font-size: 33px;
+    font-weight: bold;
+    color: linear-gradient(0deg, green, rgb(4, 4, 4));
+    background: transparent ;
+    padding: 15px 0;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Add any other styles you need for the sidebar and main content */
+  

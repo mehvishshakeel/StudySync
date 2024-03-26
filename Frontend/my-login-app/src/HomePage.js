@@ -173,25 +173,7 @@ function HomePage() {
 
   return (
     <div className={`home-page ${darkMode ? 'dark-mode' : ''}`}>
-      <section className="carousel-section">
-        <Carousel
-          showArrows={false}
-          infiniteLoop
-          autoPlay
-          interval={3575}
-          showThumbs={false}
-          showIndicators={true} // Add dots to indicate slide number
-          showStatus={false}
-        >
-          {mentalHealthTips.map((tip, index) => (
-            <div key={index}>
-              <h2>Mental Health Tip</h2>
-              <p>{tip.tip}</p>
-            </div>
-          ))}
-        </Carousel>
-      </section>
-
+      {/* Sidebar section */}
       <aside className={`sidebar ${darkMode ? 'dark-mode' : ''}`}>
         <div className="sidebar-header">
           <h1 className='brand-name'>STUDYSYNC</h1>
@@ -221,28 +203,54 @@ function HomePage() {
         </ul>
       </aside>
 
-      {showCreatePostForm && (
-        <section className="course-content">
-          <i className={` ${darkMode ? 'dark-mode' : ''}`}></i>
-          <CreatePostForm courseId={selectedCourse} userId={userId} program={program} onPostCreated={handleCreatePost} />
-        </section>
-      )}
+      {/* Main content section */}
+      <section className="main-content">
+        {/* Carousel section */}
+        <div className="carousel-section">
+          <Carousel
+            showArrows={false}
+            infiniteLoop
+            autoPlay
+            interval={3575}
+            showThumbs={false}
+            showIndicators={true}
+            showStatus={false}
+            onChange={handleCarouselChange}
+          >
+            {mentalHealthTips.map((tip, index) => (
+              <div key={index}>
+                <h2>Mental Health Tip</h2>
+                <p>{tip.tip}</p>
+              </div>
+            ))}
+          </Carousel>
+        </div>
 
-      {selectedCourse && !showCreatePostForm && (
-        <section className="course-content">
-          <CoursePosts
-            courseId={selectedCourse}
-            posts={coursePosts}
-            userId={userId}
-            onDelete={handlePostDeletion}
-            onEdit={handlePostEdit}
-            onCourseChange={handleCourseChange}
-          />
-        </section>
-      )}
+        {/* Create Post Form section */}
+        {showCreatePostForm && (
+          <div className="create-post-form-section">
+            <CreatePostForm courseId={selectedCourse} userId={userId} program={program} onPostCreated={handleCreatePost} />
+          </div>
+        )}
+
+        {/* Course Posts section */}
+        {selectedCourse && !showCreatePostForm && (
+          <div className="course-posts-section">
+            <CoursePosts
+              courseId={selectedCourse}
+              posts={coursePosts}
+              userId={userId}
+              onDelete={handlePostDeletion}
+              onEdit={handlePostEdit}
+              onCourseChange={handleCourseChange}
+            />
+          </div>
+        )}
+      </section>
     </div>
   );
 }
+
 
 export default HomePage;
 
