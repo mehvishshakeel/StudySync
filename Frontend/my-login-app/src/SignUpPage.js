@@ -58,6 +58,7 @@ function SignUpPage() {
       
       const data = await response.json();
       console.log(data);
+      alert("Account Successfully Created!")
       navigate('/login'); // Use navigate function to navigate to '/login'
     } catch (error) {
       console.error('Error signing up:', error);
