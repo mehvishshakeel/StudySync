@@ -113,7 +113,7 @@ async function getPostId(title, course, content) {
   return new Promise((resolve, reject) => {
     pool2.getConnection(async (err, connection) => {
       if (err) reject(err);
-      const sqlSearch = "SELECT postID FROM Content WHERE Title = ? AND Course = ? AND Content = ?";
+      const sqlSearch = "SELECT postID FROM Content WHERE Title = ? AND CourseID = ? AND TRIM(Content) = ?";
       const searchQuery = mysql.format(sqlSearch, [title, course, content]);
 
       connection.query(searchQuery, async (err, result) => {
