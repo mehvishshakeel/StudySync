@@ -83,15 +83,25 @@ async function editPost(userId, postId, title, content) {
 // Modify the getPosts function in your backend to include the postId
 async function getPosts(courseId) {
   return new Promise((resolve, reject) => {
+    if (isNaN(courseId)) {
+      reject("Invalid course ID");
+      return;
+    }
+
     pool2.getConnection(async (err, connection) => {
       if (err) reject(err);
       const sqlSearch = "SELECT PostID, UserID, Title, Content FROM content WHERE CourseID = ?";
       const searchQuery = mysql.format(sqlSearch, [courseId]);
+      
       connection.query(searchQuery, async (err, result) => {
         if (err) reject(err);
         connection.release();
 
-        resolve(result); // Return posts including postId
+        if (result.length === 0) {
+          resolve("No posts found under this course ID");
+        } else {
+          resolve(result); // Return posts including postId
+        }
       });
     });
   });
