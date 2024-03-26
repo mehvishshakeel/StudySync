@@ -33,7 +33,7 @@
 /* Styles for submit button */
 .form-container button[type="submit"] {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: green;
   color: white;
   border: none;
   border-radius: 5px;
@@ -42,7 +42,7 @@
 
 /* Hover styles for submit button */
 .form-container button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #003300;
 }
 
 /* Styles for title field */
