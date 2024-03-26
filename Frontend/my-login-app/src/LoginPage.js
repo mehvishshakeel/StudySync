@@ -35,6 +35,7 @@ function LoginPage() {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem('userEmail', email);
+        alert("Succesfully Logged In!")
         navigate('/home');
       } else {
         console.error('Login failed:', data.message);
