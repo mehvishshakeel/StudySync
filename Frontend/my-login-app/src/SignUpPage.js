@@ -32,6 +32,14 @@ function SignUpPage() {
       alert("Passwords don't match!");
       return;
     }
+    if(email === null){
+      alert("Please fill in your EMail!");
+      return;
+    }
+    if(year>4 || year<1){
+      alert("Please fill in the Year that you are currently enrolled in!");
+      return;
+    }
     
 
     const userData = {
