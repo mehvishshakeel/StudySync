@@ -1,20 +1,30 @@
-
 /* CoursePosts.css */
-@media (min-width: 768px) {
-  .cards-section {
-      padding-left: 250px; /* Offset for the sidebar */
-  }
+/* Adjustments in CoursePosts.css for cards */
+.cards-container {
+  max-height: calc(100vh - 200px); /* Adjust max height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 0 20px; /* Add padding on the sides for some spacing from the content area borders */
 }
 
+.cards-container::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
 
-/* Adjustments in CoursePosts.css for cards */
+.cards-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners for scrollbar thumb */
+}
+
+.cards-container::-webkit-scrollbar-track {
+  background-color: transparent; /* Background color of the scrollbar track */
+}
+
 .cards-section {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center cards horizontally */
-  max-height: 1000px;
-  overflow-y: auto; /* Enables vertical scrolling */
-  padding: 0 20px; /* Add padding on the sides for some spacing from the content area borders */
+  width: 100%;
+  padding: 20px; /* Add padding to the cards section */
 }
 
 .card {
@@ -23,55 +33,14 @@
   padding: 20px; /* Consistent padding inside the card */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border-radius: 8px; /* Rounded corners */
-  background-color: white; /* Card background color */
-  position: relative; /* For absolute positioning of child elements */
-}
-/* Adjustments in homepage.css for cards */
-.card {
   background: linear-gradient(0deg, #509552, rgb(4, 88, 4)); /* Green to white gradient */
   color: white;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: background 0.3s ease; /* Smooth transition for the background color */
+  position: relative; /* For absolute positioning of child elements */
 }
 
 .card:hover {
   background: linear-gradient(90deg, #45a049, #59525200); /* Darker green to white gradient on hover */
-}
-/* Adjustments in CreatePostForm.css for the form container and its elements */
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center the form within this container */
-  width: 100%; /* Full width to match the cards-section */
-}
-
-.form-container label, 
-.form-container input[type="text"], 
-.form-container textarea, 
-.form-container button[type="submit"] {
-  width: 100%; /* Full width of the form container */
-  margin: 10px 0; /* Add some margin to the top and bottom for spacing */
-}
-
-.form-container input[type="text"],
-.form-container textarea {
-  padding: 10px; /* Padding for input and textarea */
-  border: 1px solid #ccc; /* Border to match the design */
-  border-radius: 5px; /* Rounded corners for inputs */
-}
-
-.form-container button[type="submit"] {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.form-container button[type="submit"]:hover {
-  background-color: #0056b3; /* Darker color on hover */
 }
 
 .card-actions {
@@ -111,151 +80,18 @@
   visibility: visible;
 }
 
-.trending a:hover {
-  color: #0056b3;
-}
-
-/* Position sidebar to the left */
-@media (min-width: 768px) {
-  .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 250px;
-  }
-
-  .trending {
-      margin-left: 250px;
-  }
-}
-
-/* Adjustments for smaller screens */
-@media (max-width: 767px) {
-  .home-page {
-      padding-left: 0; /* Remove padding for smaller screens */
-  }
-
-  .carousel-section .carousel .slide,
-  .cards-section {
-      width: 100%; /* full width on smaller screens */
-      margin: 0; /* remove margin to fit the screen */
-  }
-}
-
-
-.no-posts-tile {
-  background-color: #f0f0f0; /* Light gray background */
-  padding: 20px; /* Add padding */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-  max-height: fit-content;
-  max-width: 500px; /* Limit width to avoid stretching across the screen */
-  margin: 0 auto; /* Center horizontally */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-}
-
-.no-posts-message p {
-  margin-top: 20px; /* Add some space between each line */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-  font-size: 200px;
-}
-
-/* CoursePosts.css */
-
-/* Styles for the course pick prompt */
-.course-pick-prompt {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.course-pick-prompt p {
-  background-color: #f8f9fa; /* Change to match your existing color scheme */
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Styles for the course no posts */
-.course-no-posts {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin-top: -10%;
-
-}
-
-.course-no-posts p {
-  background-color: #f8f9fa; /* Change to match your existing color scheme */
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.no-post-text {
-  text-align: center;
-  font-size: 18px;
-  color: #333; /* Adjust the color as needed */
-  margin: 20px;
-}
-
-.no-post-text br {
-  display: block;
-  margin-bottom: 10px;
-}
-
-
-/* Styles for the edit form */
-.edit-form {
-  margin-top: 20px; /* Add some space between the post content and edit form */
-}
-
-.edit-form label {
-  display: block;
-  font-weight: bold;
-}
-
+/* Adjust input and textarea styles */
 .edit-form input[type="text"],
 .edit-form textarea {
-  width: 100%; /* Take up full width */
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.edit-form-buttons {
-  display: flex;
-  justify-content: space-between; /* Align buttons with space between them */
-}
-
-.edit-form button {
-  padding: 10px 20px;
-  background-color: #144118;
-  color: white;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 4px;
+  background-color: #f1f1f1; /* Light gray background */
+  color: #333; /* Dark text color */
 }
 
-.edit-form button:hover {
-  background-color: #035605;
+.edit-form textarea {
+  resize: vertical; /* Allow vertical resizing of the textarea */
 }
-
-.title-text{
-  color: white;
-}
-
-.content-text{
-  color: white;
-}
-

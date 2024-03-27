@@ -1,145 +1,317 @@
-/* homepage.css */
-
 /* Overall styling for the home page */
 .home-page {
-    padding-left: 250px; /* Sidebar width */
-    padding-top: 20px; /* Ensure space at the top */
-    min-height: 100vh; /* Full height */
+    padding-left: 250px;
+    padding-top: 20px;
+    min-height: 100vh;
 }
 
-/* Carousel section styling */
-.carousel-section .carousel .slide {
-    max-width: 60%; /* Match card width */
-    margin-left: auto;
-    margin-right: auto;
-}
 
-/* Adjustments for smaller screens */
-@media (max-width: 767px) {
-    .home-page {
-        padding-left: 0; /* Remove padding for smaller screens */
-    }
-
-    .carousel-section .carousel .slide,
-    .cards-section {
-        width: 100%; /* Full width on smaller screens */
-        margin: 0; /* Remove margin to fit the screen */
-    }
-}
 
 /* Sidebar styling */
 .sidebar {
-    flex: 1;
-    background-color: #f0f0f0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(90deg, #009966, #206e20); /* Gradient colors */
     padding: 20px;
-    border-radius: 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.3s;
-    z-index: 1;
-    font-family: 'Open Sans', sans-serif; /* Font for sidebar */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s; /* Smooth transition on background color change */
+    color:white;
 }
 
+/* Gradient shift effect on hover */
 .sidebar:hover {
-    background-color: #95cea2;
-    transform: translateX(10px);
+    background: linear-gradient(90deg, #009966, #6bcf6b); /* Gradient colors */
 }
 
-.sidebar a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    padding: 20px 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
+/* Dark mode for sidebar */
+.sidebar.dark-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(90deg, #009966, #003300); /* Gradient colors */
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s; /* Smooth transition on background color change */
+    color: white;
+}
+/* Gradient shift effect on hover */
+.sidebar.dark-mode:hover{
+    background: linear-gradient(90deg, #009966, #6bcf6b); /* Gradient colors */
 }
 
-.sidebar a:hover {
-    background-color: #dbdbdb;
-    color: #333;
+
+/* Brand name/title */
+.brand-name {
+    font-size: 33px;
+    font-weight: bold;
+    color: linear-gradient(0deg, green, rgb(4, 4, 4));
+    background: transparent ;
+    padding: 15px 0;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
+
+
+/* Button container */
+.sidebar-buttons {
+    display: flex;
+    justify-content: space-between; /* Align items with space between */
+    align-items: center; /* Center items vertically */
+    width: 100%;
+    margin-top: 20px; /* Add spacing above buttons */
+}
+
+/* Display toggle */
+.Display {
+    padding: 8px 16px; /* Adjust padding */
+    border-radius: 50px; /* Make it pill-shaped */
+    background-color: green; /* Default background color */
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center text */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Plus sign button */
+.Post {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    width: 36px; /* Set width */
+    height: 36px; /* Set height */
+    font-size: 24px; /* Set font size */
+    background-color: green; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 50%; /* Make it round */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.plus-add-post {
+    display: flex;
+    flex-direction: column; /* Align buttons vertically */
+    width: 100%;
+    margin: auto;
+    font-size: large;
+}
+
+/* Hover effect for Display toggle */
+.Display:hover {
+    background-color: #003300; /* Darker background color on hover */
+}
+
+/* Hover effect for plus sign button */
+.Post:hover {
+    background-color: #003300; /* Darker background color on hover */
+}
+
+
+
+/* Button container */
+.course-button-container {
+    width: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: calc(100vh - 200px); /* Adjust max height as needed */
+    margin-top: 10px; /* Add spacing above buttons */
+}
+
+.course-button-container::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.course-button-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Rounded corners for scrollbar thumb */
+}
+
+.course-button-container::-webkit-scrollbar-track {
+    background-color: transparent; /* Background color of the scrollbar track */
+}
+
+/* Add margin to the course button */
+.course-button {
+    display: flex;
+    flex-direction: column; /* Align buttons vertically */
+    width: 99%;
+    border-radius: 30px;
+    background-color: green;
+    margin-bottom: 15px; /* Increase spacing between buttons and scrollbar */
+    padding: 10px; /* Add padding to buttons */
+    
+}
+
+.course-button-text{
+    display: flex;
+    flex-direction: column; /* Align buttons vertically */
+    width: 100%;
+    margin: auto;
+    font-size: large;
+}
+
+/* Remove bullet points for the course buttons */
 .sidebar ul {
     padding: 0;
     list-style-type: none;
 }
 
-/* Create post toggle button styling */
-.create-post-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 10;
+/* Individual button styling */
+.toggle-dark-mode-button, .create-post-toggle {
+    margin: 10px 0; /* Adjust vertical margin */
+    width: 100%; /* Full width */
+    padding: 10px; /* Adjust padding */
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove borders */
+    border-radius: 8px; /* Rounded corners */
     cursor: pointer;
-    width: 50px;
-    height: 50px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 50%;
+    color: #333; /* Button text color */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Button hover effect */
+.toggle-dark-mode-button:hover, .create-post-toggle:hover {
+    background-color: #dbdbdb; /* Light background color on hover */
+    color: #000; /* Darken text color on hover */
+}
+
+
+
+
+
+
+
+
+
+/* Individual button styling */
+.toggle-dark-mode-button, .create-post-toggle {
+    flex-grow: 1;
+    margin: auto;
+}
+
+
+
+/* Carousel section styling */
+.carousel-section {
+    max-width: 80%;
+    margin: auto;
+    margin-top: -6%;
+    background-color: transparent; /* Light background color */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Carousel inner slide */
+.carousel .slide {
+    text-align: center;
+    background: transparent; /* Transparent background */
+    color: #333; /* Dark text color */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Dark mode for carousel text */
+.home-page.dark-mode .carousel .slide {
+    color: #fff; /* White text color in dark mode */
+}
+
+
+
+.carousel .slide.selected {
+    opacity: 1; /* Show selected slide */
+}
+
+
+.no-post-text {
+    text-align: center;
+    font-size: 18px;
+    color: #333; /* Adjust the color as needed */
+    margin: 20px;
+  }
+  
+  .no-post-text br {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* Styles for the course no posts */
+.course-no-posts {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.create-post-toggle:hover {
-    background-color: #0056b3;
-}
-
-/* Course button styling */
-.course-button {
-    background-color:linear-gradient(0deg, #509552, rgb(4, 88, 4));
-    color: white; /* Text color */
-    border: none;
-    border-radius: 8px; /* Rounded corners */
-    padding: 12px 20px; /* Padding around the text */
-    margin: 10px 0; /* Spacing between buttons */
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-    width: 100%; /* Make buttons full width */
-    font-size: 16px; /* Increase font size */
-    font-weight: bold; /* Bold text */
-}
-
-.course-button:hover {
-    background-color: #1d531f; /* Darker green color on hover */
-}
-/* Adjustments in homepage.css for buttons */
-.course-button {
-    background: linear-gradient(90deg, #4CAF50, #176a24); /* Green to white gradient */
-    color: whitesmoke;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 15px;
-    margin: 5px 0; /* Spacing between buttons */
-    cursor: pointer;
-    transition: background 0.3s ease; /* Smooth transition for the background color */
+    height: 100vh;
+    margin-top: -15%;
+    margin-bottom: -25%;
+  
   }
   
-  .course-button:hover {
-    background: linear-gradient(90deg, #45a049, #FFFFFF); /* Darker green to white gradient on hover */
+  .course-no-posts p {
+    background-color: #f8f9fa; /* Change to match your existing color scheme */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-/* Title styling */
-.title {
-    font-size: 36px; /* Larger font size */
-    font-weight: bold; /* Bold text */
-    margin-bottom: 20px; /* Add some space below the title */
-}
 
-/* Adjustments for smaller screens */
-@media (max-width: 767px) {
-    .title {
-        font-size: 24px; /* Decrease font size for smaller screens */
-    }
-}
+/* HomePage.css */
 
-.brand-name {
+/* Layout for HomePage */
+.home-page {
+    display: flex; /* Use flexbox for layout */
+    overflow-x: hidden; /* Hide horizontal overflow */
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    flex: 0 0 250px; /* Fixed width for sidebar */
+    height: 100vh; /* Full height */
+    background: linear-gradient(90deg, #009966, #206e20); /* Gradient colors */
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    font-size: 33px; /* Increase the font size */
-    font-weight: bold; /* Make the font bold */
-    background: linear-gradient(0deg,green,rgb(4, 4, 4)); /* Change the color to make it stand out */
-    color: white;
-    padding-left: 2px;
+    transition: background-color 0.3s; /* Smooth transition on background color change */
+    color:white;
   }
+  
+  /* Main content styling */
+  .main-content {
+    flex: 1; /* Flexible width to occupy remaining space */
+    padding: 20px; /* Add padding for spacing */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  /* Dark mode for sidebar */
+  .sidebar.dark-mode {
+    background: linear-gradient(90deg, #009966, #003300); /* Gradient colors */
+  }
+  
+  /* Dark mode for main content */
+  .main-content.dark-mode {
+    background-color: #222; /* Dark background color */
+  }
+  
+  /* Brand name/title */
+  .brand-name {
+    font-size: 33px;
+    font-weight: bold;
+    color: linear-gradient(0deg, green, rgb(4, 4, 4));
+    background: transparent ;
+    padding: 15px 0;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Add any other styles you need for the sidebar and main content */
   
