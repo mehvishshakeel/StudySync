@@ -1,9 +1,7 @@
 
----
-
 # StudySync - Backend
 
-This repository contains the *Backend code* for the StudySync application.
+This repository contains the *Backend code* for the StudySync Application.
 
 ## Prerequisites
 
@@ -59,7 +57,9 @@ To run the backend server, use the following command:
 node app.js
 ```
 
-The server will start running on the port specified in the `app.js` file.
+The server will start running on the port specified in the `app.js` file, which is `http://localhost:3003`.
 
 
-## *Congratulations ! You should now have the Backend up and running!*
+## *Congratulations!*
+
+You should now have the Backend Up and Running!
