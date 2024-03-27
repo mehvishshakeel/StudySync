@@ -1,9 +1,9 @@
 
 ---
 
-# Project Name - Backend
+# StudySync - Backend
 
-This repository contains the backend code for the StudySync application.
+This repository contains the *Backend code* for the StudySync application.
 
 ## Prerequisites
 
