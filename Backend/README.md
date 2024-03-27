@@ -48,7 +48,7 @@ To set up the project, follow these steps:
 
 5. Initialize the SQL database:
 
-   - Run the SQL script provided in the `database.sql` file to create the necessary tables and schema.
+   - Run the SQL scripts provided in the `Data` folder to create the necessary tables and schema.
    - You can use a database management tool like MySQL Workbench or command-line tools to execute the script.
 
 ## Running the Backend
