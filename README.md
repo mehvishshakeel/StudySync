@@ -84,7 +84,7 @@ Once both servers are running, you can access the StudySync application by visit
 ## Collaborators
 
 - **Arvind Krishnaa** - [Arvind's GitHub Profile](https://github.com/arvi-krishna)
-- **Varshiny Gogulanathan** - [Varshiny's GitHub Profile]()
+- **Varshiny Gogulanathan** - [Varshiny's GitHub Profile](https://github.com/Varshinygogul)
 - **Anfaal Mahbub** - [Anfaal's GitHub Profile](https://github.com/anfaalmahbub) 
 - **Adhil Ashraf** - [Adhil's GitHub Profile](https://github.com/AdhilAshraf12)
 - **Al Farhana Siddique** - [Farhana's GitHub Profile](https://github.com/alfarhana25)
