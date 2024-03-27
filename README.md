@@ -15,6 +15,7 @@ This repository contains both the frontend and backend code for the StudySync ap
 - [Technologies Used](#technologies-used)
 - [Prerequisites](#prerequisites)
 - [Setup & Running the Application](#setup--running-the-application)
+- [Documents](#documents)
 - [Collaborators](#collaborators)
 
 ## Features
@@ -67,7 +68,19 @@ To set up the project, follow these steps:
 Once both servers are running, you can access the StudySync application by visiting `http://localhost:3000` in your web browser.
 
 ### *Congratulations! You now have the StudySync Application Up and Running!*
----
+
+## Documents
+- [Project Proposal](Documents/ProjectProposal-401.pdf)
+- [Design Document](Documents/DesignDocument-SENG401.pdf)
+- [Requirement Tracability Matrix (RTM)](Documents/RTM.xlsx)
+- [Frontend Tests](Documents/Frontend-Tests.xlsx)
+- [Backend Tests](Documents/Backend-Tests.xlsx)
+- [All Tests as a PDF](Documents/Tests&Results.pdf)
+- [Sequence Diagrams](Documents/StudySyncSDs.drawio(2).pdf)
+- [System Architecture](Documents/401-final-architecture.pdf)
+- [Databases Designs](Documents/FinalDBStructure.pdf)
+
+   
 ## Collaborators
 
 - **Arvind Krishnaa** - [Arvind's GitHub Profile](https://github.com/arvi-krishna)
