@@ -61,7 +61,7 @@ To set up the project, follow these steps:
 
 2. Follow the setup instructions provided in the `frontend` and `backend` directories.
 
-   - For Frontend Setup, refer to the [Frontend README](Frontend/README.md).
+   - For Frontend Setup, refer to the [Frontend README](Frontend/my-login-app/README.md).
    - For Backend Setup, refer to the [Backend README](Backend/README.md).
 
 Once both servers are running, you can access the StudySync application by visiting `http://localhost:3000` in your web browser.
