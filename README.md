@@ -70,15 +70,15 @@ Once both servers are running, you can access the StudySync application by visit
 ### *Congratulations! You now have the StudySync Application Up and Running!*
 
 ## Documents
-- [Project Proposal](Documents/ProjectProposal-401.pdf)
-- [Design Document](Documents/DesignDocument-SENG401.pdf)
+- [Project Proposal](Documents/Project-Proposal.pdf)
+- [Design Document](Documents/Design-Document.pdf)
 - [Requirement Tracability Matrix (RTM)](Documents/RTM.xlsx)
 - [Frontend Tests](Documents/Frontend-Tests.xlsx)
 - [Backend Tests](Documents/Backend-Tests.xlsx)
 - [All Tests as a PDF](Documents/Tests&Results.pdf)
-- [Sequence Diagrams](Documents/StudySyncSDs.drawio(2).pdf)
+- [Sequence Diagrams](Documents/StudySyncSD.pdf)
 - [System Architecture](Documents/401-final-architecture.pdf)
-- [Databases Designs](Documents/FinalDBStructure.pdf)
+- [Databases Designs](Documents/Final-DB-Structure.pdf)
 
    
 ## Collaborators
