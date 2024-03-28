@@ -71,7 +71,7 @@ Once both servers are running, you can access the StudySync application by visit
 
 ## Documents
 - [Project Proposal](Documents/Project-Proposal.pdf)
-- [Design Document](Documents/Design-Document-M27.pdf)
+- [Project Final Report](Documents/Project-Final-Report.pdf)
 - [Requirement Tracability Matrix (RTM)](Documents/RTM.xlsx)
 - [Frontend Tests](Documents/Frontend-Tests.xlsx)
 - [Backend Tests](Documents/Backend-Tests.xlsx)
